@@ -2,10 +2,15 @@
 
 # Tugas Besar Aljabar Linier dan Geometri
 
-Sistem Persamaan Linier, Determinan, dan Aplikasinya
+#### Sistem Persamaan Linier, Determinan, dan Aplikasinya
 
 ## Track
 https://docs.google.com/spreadsheets/d/1T2qbhikY6UYRPnkI3ODk0Oke7BOMRks3tzzk9etVUuw/edit?usp=sharing
+
+## Anggota
+1. Ahmad Rafi Maliki (13522137)
+2. Nicholas Reymon Sihite (13522144)
+3. Albert Ghazaly (13522150)
 
 ## Installing / Getting started
 
