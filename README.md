@@ -1,10 +1,11 @@
 ![Logo of the project](https://i.ibb.co/BVM7yPs/Screenshot-2023-09-19-195331.jpg)
 
-# Name of the project
-> Additional information or tagline
+# Tugas Besar Aljabar Linier dan Geometri
 
-A brief description of your project, what it is used for and how does life get
-awesome when someone starts to use it.
+Sistem Persamaan Linier, Determinan, dan Aplikasinya
+
+## Track
+https://docs.google.com/spreadsheets/d/1T2qbhikY6UYRPnkI3ODk0Oke7BOMRks3tzzk9etVUuw/edit?usp=sharing
 
 ## Installing / Getting started
 
@@ -132,6 +133,3 @@ state what the license is and how to find the text version of the license.
 Something like:
 
 "The code in this project is licensed under MIT license."
-
-## Track
-https://docs.google.com/spreadsheets/d/1T2qbhikY6UYRPnkI3ODk0Oke7BOMRks3tzzk9etVUuw/edit?usp=sharing
