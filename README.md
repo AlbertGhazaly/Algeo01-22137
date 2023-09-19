@@ -1,8 +1,6 @@
 ![Logo of the project](https://i.ibb.co/BVM7yPs/Screenshot-2023-09-19-195331.jpg)
 
-# Tugas Besar Aljabar Linier dan Geometri
-
-#### Sistem Persamaan Linier, Determinan, dan Aplikasinya
+# Tugas Besar Aljabar Linier dan Geometri : Sistem Persamaan Linier, Determinan, dan Aplikasinya
 
 ## Track
 https://docs.google.com/spreadsheets/d/1T2qbhikY6UYRPnkI3ODk0Oke7BOMRks3tzzk9etVUuw/edit?usp=sharing
