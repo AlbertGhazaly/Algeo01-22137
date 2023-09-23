@@ -16,18 +16,18 @@ public class main {
             int opt = in.nextInt();
             if (opt == 1){
                 System.out.println("Silakan pilih metode yang ingin digunakan: ");
-                System.out.println("1. Metode eliminasi Gauss");
-                System.out.println("2. Metode eliminasi Gauss-Jordan");
-                System.out.println("3. Matriks matriks balikan");
+                System.out.println("1. Metode Eliminasi Gauss");
+                System.out.println("2. Metode Eliminasi Gauss-Jordan");
+                System.out.println("3. Matriks Balikan");
                 System.out.println("4. Kaidah Cramer");
                 System.out.println("Silakan pilih menu (1-4): ");
                 int opt1 = in.nextInt();
                 System.out.println("Progres belum sejauh itu.");            
             } else if (opt == 2){
                 System.out.println("Silakan pilih metode yang ingin digunakan: ");
-                System.out.println("1. Reduksi baris");
-                System.out.println("2. Ekspansi kofaktor");
-                System.out.println("3. Metode Brute force");
+                System.out.println("1. Reduksi Baris");
+                System.out.println("2. Ekspansi Kofaktor");
+                System.out.println("3. Kombinasi Reduksi Baris dan Ekspansi Kofaktor");
                 System.out.println("Silakan pilih menu (1-3): ");
                 int opt2 = in.nextInt();
                 System.out.println("Progres belum sejauh itu.");           
