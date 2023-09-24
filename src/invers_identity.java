@@ -1,6 +1,3 @@
-// disclaimer: 
-// ini kode buatan sendiri yang di benerin sama chat gpt, nanti saya benerin sendiri. ini di push dulu biar orang lain bisa make kodenya dulu buat kerja.
-
 public class invers_identity {
     public static float[][] invert(float[][] matrix) {
         int row = matrix.length;
@@ -62,26 +59,26 @@ public class invers_identity {
 
         return identity;
     }
-
-    public static void main(String[] args) {
-        float[][] matrix = {
-            {1, 1, 2, 8},
-            {2, 8, 4, 5},
-            {1, 9, 1, 4},
-            {1, 2, 3, 4}
-        };
-
-        try {
-            float[][] inverse = invert(matrix);
-
-            for (int i = 0; i < inverse.length; i++) {
-                for (int j = 0; j < inverse[i].length; j++) {
-                    System.out.print(inverse[i][j] + " ");
-                }
-                System.out.println();
-            }
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-        }
-    }
 }
+//     public static void main(String[] args) {
+        // float[][] matrix = {
+            // {1, 1, 2, 8},
+            // {2, 8, 4, 5},
+//             {1, 9, 1, 4},
+//             {1, 2, 3, 4}
+//         };
+
+//         try {
+//             float[][] inverse = invert(matrix);
+
+//             for (int i = 0; i < inverse.length; i++) {
+//                 for (int j = 0; j < inverse[i].length; j++) {
+//                     System.out.print(inverse[i][j] + " ");
+//                 }
+//                 System.out.println();
+//             }
+//         } catch (IllegalArgumentException e) {
+//             System.out.println(e.getMessage());
+//         }
+//     }
+// }
