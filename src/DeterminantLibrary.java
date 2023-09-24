@@ -24,8 +24,8 @@ public class DeterminantLibrary{
     }
 
     public static boolean isUpperRightTriangle(float[][] m){
-        for (int i = 0; i < m.length; i++){
-            for (int j = 0; j < m[0].length; j++){
+        for (int i = 1; i < m.length; i++){
+            for (int j = 0; j < i; j++){
                 if (m[i][j] != 0){
                     return false;
                 }
