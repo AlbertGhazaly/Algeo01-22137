@@ -1,7 +1,7 @@
 import java.util.*;
 
 public class main {
-    public static void main(String[] args){
+    public static void Main(String[] args){
         Scanner in = new Scanner (System.in);
         while (true){
             System.out.println("MENU");
