@@ -27,7 +27,8 @@ public class main {
                 System.out.println("Silakan pilih metode yang ingin digunakan: ");
                 System.out.println("1. Reduksi baris");
                 System.out.println("2. Ekspansi kofaktor");
-                System.out.println("Silakan pilih menu (1-2): ");
+                System.out.println("3. Kombinasi Reduksi Baris dan Ekspansi Kofaktor");
+                System.out.println("Silakan pilih menu (1-3): ");
                 int opt2 = in.nextInt();
                 System.out.println("Progres belum sejauh itu.");           
             } else if (opt == 3){
