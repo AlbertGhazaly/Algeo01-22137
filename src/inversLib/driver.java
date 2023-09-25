@@ -11,12 +11,14 @@ public class driver {
             {1, 2, 3, 4}
         };
 
-        System.out.println("Before: ");
+        System.out.println("Matrix: ");
         function.displayMatrix(matrix);
 
-        matrix = invers.adjoint(matrix);
 
-        System.out.println("After: ");
-        function.displayMatrix(matrix);
+        System.out.println("Inverse Matrix metode Adjoint: ");
+        function.displayMatrix(invers.adjoint(matrix));
+
+        System.out.println("Inverse Matrix metode Identitas: ");
+        function.displayMatrix(invers.identity(matrix));
     }
 }
