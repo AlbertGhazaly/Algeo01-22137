@@ -186,7 +186,7 @@ public class DeterminantLibrary{
         -------- KAMUS LOKAL --------
         i, j, countSwitch : integer
         factor, det : double
-        m : matrix [0..mat.rowEff-1][mat.colEff] of double
+        m : matrix [0..mat.rowEff-1][mat.colEff-1] of double
         -------- REALISASI --------
         Menggunakan function/procedure tambahan: leftZero, switchRow, isUpperRightTriangle, subtractRowByFactor, copyMatrix
         */
