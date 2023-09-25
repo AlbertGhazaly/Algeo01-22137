@@ -98,6 +98,15 @@ public class operator {
         }
         return m;
     }
+    public static double[][] swapCol(double[][] mat1, double[][] rowMat, int idX){
+        double[][] cMat = DeterminantLibrary.copyMatrix(mat1);
+        int row = mat1.length;
+        for (int i=0;i<row;i++){
+            cMat[i][idX] = rowMat[i][0];
+        }
+        return cMat;
+    }
+
 
     // public static void main(String[] args){
     //     double[][] m = {{1,1,1,6,2},
