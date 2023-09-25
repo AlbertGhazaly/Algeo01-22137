@@ -1,4 +1,14 @@
 public class DeterminantLibrary{
+    
+    public static double[][] copyMatrix(double[][] m){
+        double[][] temp = new double[m.length][m[0].length];
+        for (int i = 0; i < m.length; i++){
+            for (int j = 0; j < m[0].length; j++){
+                temp[i][j] = m[i][j];
+            }
+        }
+        return temp;
+    }
 
     public static int leftZero(double[][] m, int row){
         int i = 0;
@@ -98,7 +108,8 @@ public class DeterminantLibrary{
         }
     }
 
-    public static double detRowReduction(double[][] m){
+    public static double detRowReduction(double[][] mat){
+        double[][] m = copyMatrix(mat);
         double det = 1;
         int countSwitch = 0;
         while (!isBelowDiagonalZero(m)){
@@ -146,7 +157,8 @@ public class DeterminantLibrary{
         }
     }
 
-    public static double detCombination(double[][] m){
+    public static double detCombination(double[][] mat){
+        double[][] m = copyMatrix(mat);
         if (m.length == 1){
             double det = m[0][0];
             return det;
