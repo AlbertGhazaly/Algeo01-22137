@@ -1,5 +1,5 @@
 public class invers_identity {
-    public static float[][] invert(float[][] matrix) {
+    public static double[][] invert(double[][] matrix) {
         int row = matrix.length;
         int col = matrix[0].length;
 
@@ -9,7 +9,7 @@ public class invers_identity {
         }
 
         // Create an identity matrix of the same size
-        float[][] identity = new float[row][row];
+        double[][] identity = new double[row][row];
         for (int i = 0; i < row; i++) {
             identity[i][i] = 1;
         }
@@ -26,7 +26,7 @@ public class invers_identity {
 
             // Swap rows if necessary
             if (pivotRow != i) {
-                float[] temp = matrix[i];
+                double[] temp = matrix[i];
                 matrix[i] = matrix[pivotRow];
                 matrix[pivotRow] = temp;
 
@@ -36,7 +36,7 @@ public class invers_identity {
             }
 
             // Divide the pivot row by the pivot element
-            float pivot = matrix[i][i];
+            double pivot = matrix[i][i];
             if (pivot == 0) {
                 throw new IllegalArgumentException("Matrix is singular. Cannot compute inverse.");
             }
@@ -48,7 +48,7 @@ public class invers_identity {
             // Eliminate non-zero values above and below the pivot
             for (int j = 0; j < row; j++) {
                 if (j != i) {
-                    float factor = matrix[j][i];
+                    double factor = matrix[j][i];
                     for (int k = 0; k < row; k++) {
                         matrix[j][k] -= factor * matrix[i][k];
                         identity[j][k] -= factor * identity[i][k];
@@ -61,7 +61,7 @@ public class invers_identity {
     }
 }
 //     public static void main(String[] args) {
-        // float[][] matrix = {
+        // double[][] matrix = {
             // {1, 1, 2, 8},
             // {2, 8, 4, 5},
 //             {1, 9, 1, 4},
@@ -69,7 +69,7 @@ public class invers_identity {
 //         };
 
 //         try {
-//             float[][] inverse = invert(matrix);
+//             double[][] inverse = invert(matrix);
 
 //             for (int i = 0; i < inverse.length; i++) {
 //                 for (int j = 0; j < inverse[i].length; j++) {

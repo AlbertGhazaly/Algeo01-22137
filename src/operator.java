@@ -1,5 +1,5 @@
 public class operator {
-    public static void displayMatrix(float[][] mat){ //tampilin matriks
+    public static void displayMatrix(double[][] mat){ //tampilin matriks
         int row = mat.length;
         int col = mat[0].length;
         for (int i=0;i<row;i++){
@@ -10,10 +10,10 @@ public class operator {
         }
     }
 
-    public static float[][] delColAt(float[][] matrix,int colId){ // hasilin duplikat matriks yang didelete kolom colId 
+    public static double[][] delColAt(double[][] matrix,int colId){ // hasilin duplikat matriks yang didelete kolom colId 
         int row = matrix.length;
         int col = matrix[0].length;
-        float[][] result = new float[row][col-1];
+        double[][] result = new double[row][col-1];
         for (int i=0;i<row;i++){
             for (int j=0;j<colId;j++){
                 result[i][j] = matrix[i][j];
@@ -28,9 +28,9 @@ public class operator {
         return result;
     }
 
-    public static float[][] multiplyMatrix(float[][] m1, float[][] m2){ // perkalian matriks
-        float[][] newmatrixx = new float[m1.length][m2[0].length];
-        float sum;
+    public static double[][] multiplyMatrix(double[][] m1, double[][] m2){ // perkalian matriks
+        double[][] newmatrixx = new double[m1.length][m2[0].length];
+        double sum;
         for (int i=0;i<m1.length;i++){
             for (int j=0;j<m2[0].length;j++){
                 sum = 0;
@@ -43,9 +43,9 @@ public class operator {
         return newmatrixx;
     }
     
-    public static float[][] takeCol(float[][] matrixx, int x){ // ambil baris dari kolom ke x
+    public static double[][] takeCol(double[][] matrixx, int x){ // ambil baris dari kolom ke x
         int row = matrixx.length;
-        float[][] newmatrixx = new float[row][1];
+        double[][] newmatrixx = new double[row][1];
         for (int i=0;i<row;i++){
             newmatrixx[i][0] = matrixx[i][x];
         }
@@ -53,7 +53,7 @@ public class operator {
     }
     
 
-    public static float[][] echelonRow(float[][] m){ // ubah matriks ke matriks eselon baris
+    public static double[][] echelonRow(double[][] m){ // ubah matriks ke matriks eselon baris
 
         while (!DeterminantLibrary.isBelowDiagonalZero(m)){
             for (int i = 1; i < m.length; i++){
@@ -77,7 +77,7 @@ public class operator {
         for (int i=0;i<m.length;i++){
             leftZeroId = DeterminantLibrary.leftZero(m, i);
             if (m[i][leftZeroId]!=1){
-                float  leftzero = m[i][leftZeroId];
+                double  leftzero = m[i][leftZeroId];
                 for (int j =leftZeroId;j<m[0].length;j++){
                     m[i][j] = m[i][j]/leftzero;
                 }
@@ -86,7 +86,7 @@ public class operator {
         return m;
     }
 
-    public static float[][] echelonRowReduction(float[][] m){ //ubah matriks ke matriks eselon baris tereduksi
+    public static double[][] echelonRowReduction(double[][] m){ //ubah matriks ke matriks eselon baris tereduksi
         m = echelonRow(m);
         int row = m.length;
         int leftZeroId;
@@ -100,7 +100,7 @@ public class operator {
     }
 
     // public static void main(String[] args){
-    //     float[][] m = {{1,1,1,6,2},
+    //     double[][] m = {{1,1,1,6,2},
     //                     {1,2,3,14,4},
     //                     {2,3,2,14,5}};
     //     m = echelonRowReduction(m);
