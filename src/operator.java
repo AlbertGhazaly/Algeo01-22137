@@ -1,15 +1,16 @@
 public class operator {
-    public static void displayMatrix(float[][] mat){
+    public static void displayMatrix(float[][] mat){ //tampilin matriks
         int row = mat.length;
         int col = mat[0].length;
         for (int i=0;i<row;i++){
             for (int j=0;j<col;j++){
-                System.out.print(mat[i][j]);
+                System.out.print(mat[i][j]+"  ");
             }
             System.out.println();
         }
     }
-    public static float[][] delColAt(float[][] matrix,int colId){
+
+    public static float[][] delColAt(float[][] matrix,int colId){ // hasilin duplikat matriks yang didelete kolom colId 
         int row = matrix.length;
         int col = matrix[0].length;
         float[][] result = new float[row][col-1];
@@ -26,9 +27,34 @@ public class operator {
         }
         return result;
     }
-    public static float[][] epsilonRow(float[][] m){
-        float det = 1;
-        int countSwitch = 0;
+
+    public static float[][] multiplyMatrix(float[][] m1, float[][] m2){ // perkalian matriks
+        float[][] newmatrixx = new float[m1.length][m2[0].length];
+        float sum;
+        for (int i=0;i<m1.length;i++){
+            for (int j=0;j<m2[0].length;j++){
+                sum = 0;
+                for (int k=0;k<m1[0].length;k++)    {
+                    sum += m1[i][k]*m2[k][j];
+                }
+                newmatrixx[i][j] = sum;
+            }
+        }
+        return newmatrixx;
+    }
+    
+    public static float[][] takeCol(float[][] matrixx, int x){ // ambil baris dari kolom ke x
+        int row = matrixx.length;
+        float[][] newmatrixx = new float[row][1];
+        for (int i=0;i<row;i++){
+            newmatrixx[i][0] = matrixx[i][x];
+        }
+        return newmatrixx;
+    }
+    
+
+    public static float[][] echelonRow(float[][] m){ // ubah matriks ke matriks eselon baris
+
         while (!DeterminantLibrary.isBelowDiagonalZero(m)){
             for (int i = 1; i < m.length; i++){
                 if (DeterminantLibrary.leftZero(m, i) != i){
@@ -44,7 +70,6 @@ public class operator {
                 }
                 if(switchRowIdx != i){
                     DeterminantLibrary.switchRow(m, i, switchRowIdx);
-                    countSwitch += 1;
                 }
             }
         }
@@ -61,31 +86,8 @@ public class operator {
         return m;
     }
 
-    public static float[][] multiplyMatrix(float[][] m1, float[][] m2){
-        float[][] newmatrixx = new float[m1.length][m2[0].length];
-        float sum;
-        for (int i=0;i<m1.length;i++){
-            for (int j=0;j<m2[0].length;j++){
-                sum = 0;
-                for (int k=0;k<m1[0].length;k++)    {
-                    sum += m1[i][k]*m2[k][j];
-                }
-                newmatrixx[i][j] = sum;
-            }
-        }
-        return newmatrixx;
-    }
-
-    public static float[][] takeRow(float[][] matrixx, int x){
-        int row = matrixx.length;
-        float[][] newmatrixx = new float[row][1];
-        for (int i=0;i<row;i++){
-            newmatrixx[i][0] = matrixx[i][x];
-        }
-        return newmatrixx;
-    }
-    public static float[][] epsilonRowReduction(float[][] m){
-        m = epsilonRow(m);
+    public static float[][] echelonRowReduction(float[][] m){ //ubah matriks ke matriks eselon baris tereduksi
+        m = echelonRow(m);
         int row = m.length;
         int leftZeroId;
         for (int i=0;i<row;i++){
@@ -96,14 +98,14 @@ public class operator {
         }
         return m;
     }
-//     public static void main(String[] args){
-//         float[][] m = {{1,1,1,1},
-//                         {1,2,3,4},
-//                         {2,3,2,3},
-//                         {3,1,2,4}};
-//         m = epsilonRowReduction(m);
-//         displayMatrix((m));
-//     }
- }
+
+    // public static void main(String[] args){
+    //     float[][] m = {{1,1,1,6,2},
+    //                     {1,2,3,14,4},
+    //                     {2,3,2,14,5}};
+    //     m = echelonRowReduction(m);
+    //     displayMatrix((m));
+    // }
+  }
 
 
