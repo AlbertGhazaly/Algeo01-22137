@@ -65,14 +65,26 @@ public class invers {
             }
         }
 
-        return aug;
+        /* Membuat empty matrix inverse*/
+        double[][] invMatrix = new double[row][col];
+
+        for (int i = 0; i < row; i++){
+            for (int j = 0; j < col; j++){
+
+                invMatrix[i][j] = aug[i][j+col];
+            }
+        }
+
+        return invMatrix;
     }    
 
 
     public static double[][] adjoint(double[][] matrix){
 
         int row = matrix.length, col = matrix[0].length;
-        double detM = determinantLibrary.detCombination(matrix);
+
+        double detM = determinantLibrary.detCofactorExp(matrix);
+
 
         /* Membuat empty matrix inverse */
         double[][] invMatrix = new double[row][col];
@@ -87,17 +99,21 @@ public class invers {
                 for (int k = 0; k < row-1; k++){
                     for (int l = 0; l < col-1; l++){
 
-                        if (k >= i && l >= i){
+                        if (k >= i && l >= j){
                             temp[k][l] = matrix[k+1][l+1];
+                            
                         } else if (l >= j){
                             temp[k][l] = matrix[k][l+1];
+                           
                         } else if (k >= i){
                             temp[k][l] = matrix[k+1][l];
+                            
                         } else {
                             temp[k][l] = matrix[k][l];
+                            
                         }
                     }
-                }
+                } 
                 invMatrix[i][j] = Math.pow(-1, i+j)*determinantLibrary.detCombination(temp);
             }
         }
