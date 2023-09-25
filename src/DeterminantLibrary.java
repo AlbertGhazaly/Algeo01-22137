@@ -23,7 +23,7 @@ public class DeterminantLibrary{
         }
     }
 
-    public static boolean isUpperRightTriangle(float[][] m){
+    public static boolean isBelowDiagonalZero(float[][] m){
         for (int i = 1; i < m.length; i++){
             for (int j = 0; j < i; j++){
                 if (m[i][j] != 0){
@@ -77,7 +77,7 @@ public class DeterminantLibrary{
     public static float detRowReduction(float[][] m){
         float det = 1;
         int countSwitch = 0;
-        while (!isUpperRightTriangle(m)){
+        while (!isBelowDiagonalZero(m)){
             for (int i = 1; i < m.length; i++){
                 if (leftZero(m, i) != i){
                     substractRowByFactor(m, leftZero(m, i), i, leftZero(m, i));
