@@ -1,6 +1,6 @@
 public class DeterminantLibrary{
 
-    public static int leftZero(float[][] m, int row){
+    public static int leftZero(double[][] m, int row){
         int i = 0;
         int count = 0;
         while (i < m[0].length){
@@ -14,8 +14,8 @@ public class DeterminantLibrary{
         return count;
     }
 
-    public static void switchRow(float[][] m, int r1, int r2){
-        float temp;
+    public static void switchRow(double[][] m, int r1, int r2){
+        double temp;
         for (int i = 0; i < m[0].length; i++){
             temp = m[r1][i];
             m[r1][i] = m[r2][i];
@@ -23,7 +23,7 @@ public class DeterminantLibrary{
         }
     }
 
-    public static boolean isUpperRightTriangle(float[][] m){
+    public static boolean isBelowDiagonalZero(double[][] m){
         for (int i = 0; i < m.length; i++){
             for (int j = 0; j < m[0].length; j++){
                 if (m[i][j] != 0){
@@ -34,15 +34,15 @@ public class DeterminantLibrary{
         return true;
     }
 
-    public static void substractRowByFactor(float[][] m, int r1, int r2, int startCol){
-        float factor = m[r2][startCol] / m[r1][startCol];
+    public static void substractRowByFactor(double[][] m, int r1, int r2, int startCol){
+        double factor = m[r2][startCol] / m[r1][startCol];
         for (int i = startCol; i < m[0].length; i++){
             m[r2][i] -= factor * m[r1][i];
         }
     }
 
-    public static float cofactor(float[][] m, int rowExc, int colExc){
-        float[][] cof = new float[m.length - 1][m[0].length - 1];
+    public static double cofactorExp(double[][] m, int rowExc, int colExc){
+        double[][] cof = new double[m.length - 1][m[0].length - 1];
         for (int i = 0; i < m.length; i++){
             for (int j = 0; j < m[0].length; j++){
                 if ((i != rowExc) && (j != colExc)){
@@ -58,14 +58,38 @@ public class DeterminantLibrary{
                 }
             }
         }
-        float det = detCofactorExp(cof);
+        double det = detCofactorExp(cof);
         if ((rowExc + colExc) % 2 != 0){
             det *= -1;
         }
         return det;
     }
 
-    public static void displayMatrix(float[][] m){
+    public static double cofactorComb(double[][] m, int rowExc, int colExc){
+        double[][] cof = new double[m.length - 1][m[0].length - 1];
+        for (int i = 0; i < m.length; i++){
+            for (int j = 0; j < m[0].length; j++){
+                if ((i != rowExc) && (j != colExc)){
+                    int row = i;
+                    int col = j;
+                    if (i > rowExc){
+                        row -= 1;
+                    }
+                    if (j > colExc){
+                        col -= 1;
+                    }
+                    cof[row][col] = m[i][j];
+                }
+            }
+        }
+        double det = detCombination(cof);
+        if ((rowExc + colExc) % 2 != 0){
+            det *= -1;
+        }
+        return det;
+    }
+
+    public static void displayMatrix(double[][] m){
         for (int i = 0; i < m.length; i++){
             for (int j = 0; j < m[0].length; j++){
                 System.out.print(m[i][j] + " ");
@@ -74,10 +98,10 @@ public class DeterminantLibrary{
         }
     }
 
-    public static float detRowReduction(float[][] m){
-        float det = 1;
+    public static double detRowReduction(double[][] m){
+        double det = 1;
         int countSwitch = 0;
-        while (!isUpperRightTriangle(m)){
+        while (!isBelowDiagonalZero(m)){
             for (int i = 1; i < m.length; i++){
                 if (leftZero(m, i) != i){
                     substractRowByFactor(m, leftZero(m, i), i, leftZero(m, i));
@@ -107,31 +131,31 @@ public class DeterminantLibrary{
         return det * countSwitch;
     }
 
-    public static float detCofactorExp(float[][] m){
-        if (m.length == 2){
-            float det = m[0][0] * m[1][1] - m[0][1] * m[1][0];
+    public static double detCofactorExp(double[][] m){
+        if (m.length == 1){
+            double det = m[0][0];
             return det;
         } else {
-            float det = 0;
+            double det = 0;
             for (int i = 0; i < m.length; i++){
-                float cof = cofactor(m, i, 0);
-                float val = m[i][0] * cof;
+                double cof = cofactorExp(m, i, 0);
+                double val = m[i][0] * cof;
                 det += val;
             }
             return det;
         }
     }
 
-    public static float detCombination(float[][] m){
-        if (m.length == 2){
-            float det = m[0][0] * m[1][1] - m[0][1] * m[1][0];
+    public static double detCombination(double[][] m){
+        if (m.length == 1){
+            double det = m[0][0];
             return det;
         } else {
             for (int i = 1; i < m.length; i++){
                 substractRowByFactor(m, 0, i, 0);
             }
-            float cof = cofactor(m, 0, 0);
-            float det = m[0][0] * cof;
+            double cof = cofactorComb(m, 0, 0);
+            double det = m[0][0] * cof;
             return det;
         }        
     }
