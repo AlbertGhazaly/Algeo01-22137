@@ -30,13 +30,24 @@ public class spl {
         return result;
     }
 
-    // public static void main(String[] args){
-    //     double[][] m = {{1,1,1,6,1},
-    //     {1,2,3,14,1},{2,3,2,14,1}};
-    //     double[][] res = gauss_Spl(m);
-    //     operator.displayMatrix(res);
+    public static double[][] gauss_Jordan_Spl(double[][] mat){ // 
+        int row = mat.length;
+        int col = mat[0].length;
+        mat = operator.echelonRowReduction(mat);
+        double[][] result = new double[row][1];
+        for (int i=0;i<row;i++){
+            result[i][0] = mat[i][col-1];
+        }
+        return result;
+    }
+//     public static void main(String[] args){
+//         double[][] m = {{1,1,1,6},
+//         {1,2,3,14},{2,3,2,14}};
+//         double[][] res = gauss_Jordan_Spl(m);
+//         operator.displayMatrix(m);
+//         operator.displayMatrix(res);
 
 
-    // }
-}
+//     }
+ }
 
