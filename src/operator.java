@@ -4,14 +4,9 @@ public class operator {
         int col = mat[0].length;
         for (int i=0;i<row;i++){
             for (int j=0;j<col;j++){
-                if (j==col-1){
-                    System.out.println(mat[i][j]);
-
-                }else{
-                     System.out.print(mat[i][j]+" ");
-
-                }
+                System.out.print(mat[i][j]);
             }
+            System.out.println();
         }
     }
     public static float[][] delColAt(float[][] matrix,int colId){
@@ -30,6 +25,40 @@ public class operator {
             }
         }
         return result;
+    }
+    public static float[][] epsilonRow(float[][] m){
+        float det = 1;
+        int countSwitch = 0;
+        while (!DeterminantLibrary.isBelowDiagonalZero(m)){
+            for (int i = 1; i < m.length; i++){
+                if (DeterminantLibrary.leftZero(m, i) != i){
+                    DeterminantLibrary.substractRowByFactor(m, DeterminantLibrary.leftZero(m, i), i, DeterminantLibrary.leftZero(m, i));
+                }
+            }
+            for (int i = 1; i < m.length - 1; i++){
+                int switchRowIdx = i;
+                for (int j = i+1; j < m.length; j++){
+                    if (DeterminantLibrary.leftZero(m, i) > DeterminantLibrary.leftZero(m, j)){
+                        switchRowIdx = j;
+                    }
+                }
+                if(switchRowIdx != i){
+                    DeterminantLibrary.switchRow(m, i, switchRowIdx);
+                    countSwitch += 1;
+                }
+            }
+        }
+        int leftZeroId;
+        for (int i=0;i<m.length;i++){
+            leftZeroId = DeterminantLibrary.leftZero(m, i);
+            if (m[i][leftZeroId]!=1){
+                float  leftzero = m[i][leftZeroId];
+                for (int j =leftZeroId;j<m[0].length;j++){
+                    m[i][j] = m[i][j]/leftzero;
+                }
+            }
+        }
+        return m;
     }
 
     public static float[][] multiplyMatrix(float[][] m1, float[][] m2){
@@ -55,6 +84,26 @@ public class operator {
         }
         return newmatrixx;
     }
+    public static float[][] epsilonRowReduction(float[][] m){
+        m = epsilonRow(m);
+        int row = m.length;
+        int leftZeroId;
+        for (int i=0;i<row;i++){
+            leftZeroId = DeterminantLibrary.leftZero(m, i);
+            for (int j=0;j<i;j++){
+                DeterminantLibrary.substractRowByFactor(m, i, j, leftZeroId);
+            }
+        }
+        return m;
+    }
+//     public static void main(String[] args){
+//         float[][] m = {{1,1,1,1},
+//                         {1,2,3,4},
+//                         {2,3,2,3},
+//                         {3,1,2,4}};
+//         m = epsilonRowReduction(m);
+//         displayMatrix((m));
+//     }
+ }
 
-}
 

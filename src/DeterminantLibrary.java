@@ -73,7 +73,6 @@ public class DeterminantLibrary{
             System.out.println();
         }
     }
-
     public static float detRowReduction(float[][] m){
         float det = 1;
         int countSwitch = 0;
