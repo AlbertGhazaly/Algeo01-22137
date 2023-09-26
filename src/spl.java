@@ -6,7 +6,6 @@ public class spl {
 
         double[][] inv = invers.identity(operator.delColAt(cMat,col-1));
         double[][] b_cMat = operator.takeCol(cMat, col-1);
-        operator.displayMatrix(inv);
 
         double[][] result_Equation_cMat = operator.multiplyMatrix(inv, b_cMat);
         return result_Equation_cMat;
@@ -52,8 +51,6 @@ public class spl {
         double[][] result = new double[row][1];
         double[][] dummy = new double[m1.length][m1[0].length];
         double detMatAwal = determinant.detRowReduction(matrix);
-        operator.displayMatrix(m1);
-        operator.displayMatrix(m2);
         for (int i=0;i<row;i++){
             dummy = operator.swapCol(m1, m2, i);
             det = determinant.detRowReduction(dummy)/detMatAwal;
@@ -62,14 +59,6 @@ public class spl {
         }
         return result;
     }
-    // public static void main(String[] args){
-    //     double[][] cmat = {{1,1,1,6},
-    //     {1,2,3,14},{2,3,2,14}};
-    //     double[][] res = crammer_Spl(cmat);
-    //     operator.displayMatrix(cmat);
-    //     operator.displayMatrix(res);
 
-
-    // }
  }
 
