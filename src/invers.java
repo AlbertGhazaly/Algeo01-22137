@@ -81,7 +81,7 @@ public class invers {
 
         int row = matrix.length, col = matrix[0].length;
 
-        double detM = DeterminantLibrary.detCofactorExp(matrix);
+        double detM = determinant.detCofactorExp(matrix);
 
 
         /* Membuat empty matrix inverse */
@@ -112,7 +112,7 @@ public class invers {
                         }
                     }
                 } 
-                invMatrix[i][j] = Math.pow(-1, i+j)*DeterminantLibrary.detCombination(temp);
+                invMatrix[i][j] = Math.pow(-1, i+j)*determinant.detCombination(temp);
             }
         }
         /* matrix invers = 1/determinan x matrix cofactor */
