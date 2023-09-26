@@ -1,4 +1,4 @@
-import java.text.DecimalFormat;
+// import java.text.DecimalFormat;
 
 public class operator {
     public static void displayMatrix(double[][] mat){ //tampilin matriks
