@@ -11,14 +11,14 @@ public class determinant{
         -------- REALISASI --------
         Menggunakan function/procedure tambahan: leftZero, switchRow, isUpperRightTriangle, subtractRowByFactor, copyMatrix
         */
-        double[][] m = copyMatrix(mat);
+        double[][] m = operator.copyMatrix(mat);
         double det = 1;
         int countSwitch = 0;
-        while (!isBelowDiagonalZero(m)){
+        while (!operator.isBelowDiagonalZero(m)){
             for (int i = 1; i < m.length; i++){
                 // OBE operasi 2 baris dengan kelipatan
-                if (leftZero(m, i) != i){
-                    substractRowByFactor(m, leftZero(m, i), i, leftZero(m, i));
+                if (operator.leftZero(m, i) != i){
+                    operator.substractRowByFactor(m, operator.leftZero(m, i), i, operator.leftZero(m, i));
                 }
             }
             for (int i = 1; i < m.length - 1; i++){
@@ -26,13 +26,13 @@ public class determinant{
                 int switchRowIdx = i;
                 for (int j = i+1; j < m.length; j++){
                     // Mencari baris dengan leftZero terkecil
-                    if (leftZero(m, i) > leftZero(m, j)){
+                    if (operator.leftZero(m, i) > operator.leftZero(m, j)){
                         switchRowIdx = j;
                     }
                 }
                 if(switchRowIdx != i){
                     // Menukar row i dengan row dengan leftZero terkecil
-                    switchRow(m, i, switchRowIdx);
+                    operator.switchRow(m, i, switchRowIdx);
                     countSwitch += 1;
                 }
             }
@@ -70,7 +70,7 @@ public class determinant{
             double det = 0;
             for (int i = 0; i < m.length; i++){
                 // Looping perkalian elemen dengan determinan kofaktor
-                double cof = cofactorExp(m, i, 0);
+                double cof = operator.cofactorExp(m, i, 0);
                 double val = m[i][0] * cof; // Mengalikan elemen dengan kofaktor
                 det += val; // Menjumlahkan seluruh hasil perkalian elemen dengan kofaktor
             }
@@ -89,7 +89,7 @@ public class determinant{
         -------- REALISASI --------
         Menggunakan function/procedure tambahan: subtractRowByFactor, cofactorComb, copyMatrix
         */
-        double[][] m = copyMatrix(mat);
+        double[][] m = operator.copyMatrix(mat);
         if (m.length == 1){
             // Jika matrix 1x1, kembalikan elemen baris 0 kolom 0
             double det = m[0][0];
@@ -98,9 +98,9 @@ public class determinant{
             // Jika tidak, reduksi baris lalu kalikan dengan determinan kofaktor
             for (int i = 1; i < m.length; i++){
                 // Looping untuk 'mengurangi' baris pada kolom 1
-                substractRowByFactor(m, 0, i, 0);
+                operator.substractRowByFactor(m, 0, i, 0);
             }
-            double cof = cofactorComb(m, 0, 0);
+            double cof = operator.cofactorComb(m, 0, 0);
             double det = m[0][0] * cof; // Mengalikan elemen baris 0 kolom 0 dengan kofaktor
             return det;
         }        
