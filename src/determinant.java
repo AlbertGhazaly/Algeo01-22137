@@ -1,4 +1,4 @@
-public class DeterminantLibrary{
+public class determinant{
 
     public static double detRowReduction(double[][] mat){
         /*
