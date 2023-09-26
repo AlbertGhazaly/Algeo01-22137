@@ -1,6 +1,5 @@
-import java.text.DecimalFormat;
+// import java.text.DecimalFormat;
 import java.util.*;
-
 public class operator {
     public static void inputMatrix(double[][] mat){
         Scanner in = new Scanner (System.in);
