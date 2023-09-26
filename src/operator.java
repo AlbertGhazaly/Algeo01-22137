@@ -57,27 +57,27 @@ public class operator {
 
     public static double[][] echelonRow(double[][] m){ // ubah matriks ke matriks eselon baris
 
-        while (!DeterminantLibrary.isBelowDiagonalZero(m)){
+        while (!isBelowDiagonalZero(m)){
             for (int i = 1; i < m.length; i++){
-                if (DeterminantLibrary.leftZero(m, i) != i){
-                    DeterminantLibrary.substractRowByFactor(m, DeterminantLibrary.leftZero(m, i), i, DeterminantLibrary.leftZero(m, i));
+                if (leftZero(m, i) != i){
+                    substractRowByFactor(m, leftZero(m, i), i, leftZero(m, i));
                 }
             }
             for (int i = 1; i < m.length - 1; i++){
                 int switchRowIdx = i;
                 for (int j = i+1; j < m.length; j++){
-                    if (DeterminantLibrary.leftZero(m, i) > DeterminantLibrary.leftZero(m, j)){
+                    if (leftZero(m, i) > leftZero(m, j)){
                         switchRowIdx = j;
                     }
                 }
                 if(switchRowIdx != i){
-                    DeterminantLibrary.switchRow(m, i, switchRowIdx);
+                    switchRow(m, i, switchRowIdx);
                 }
             }
         }
         int leftZeroId;
         for (int i=0;i<m.length;i++){
-            leftZeroId = DeterminantLibrary.leftZero(m, i);
+            leftZeroId = leftZero(m, i);
             if (m[i][leftZeroId]!=1){
                 double  leftzero = m[i][leftZeroId];
                 for (int j =leftZeroId;j<m[0].length;j++){
@@ -93,15 +93,15 @@ public class operator {
         int row = m.length;
         int leftZeroId;
         for (int i=0;i<row;i++){
-            leftZeroId = DeterminantLibrary.leftZero(m, i);
+            leftZeroId = leftZero(m, i);
             for (int j=0;j<i;j++){
-                DeterminantLibrary.substractRowByFactor(m, i, j, leftZeroId);
+                substractRowByFactor(m, i, j, leftZeroId);
             }
         }
         return m;
     }
     public static double[][] swapCol(double[][] mat1, double[][] rowMat, int idX){
-        double[][] cMat = DeterminantLibrary.copyMatrix(mat1);
+        double[][] cMat = copyMatrix(mat1);
         int row = mat1.length;
         for (int i=0;i<row;i++){
             cMat[i][idX] = rowMat[i][0];
@@ -227,7 +227,7 @@ public class operator {
                 }
             }
         }
-        double det = detCofactorExp(cof); // Menghitung determinan matriks cof
+        double det = determinant.detCofactorExp(cof); // Menghitung determinan matriks cof
         if ((rowExc + colExc) % 2 != 0){
             // Optimalisasi nilai kofaktor
             det *= -1;
@@ -262,7 +262,7 @@ public class operator {
                 }
             }
         }
-        double det = detCombination(cof); // Menghitung determinan matriks cof
+        double det = determinant.detCombination(cof); // Menghitung determinan matriks cof
         if ((rowExc + colExc) % 2 != 0){
             // Optimalisasi nilai kofaktor
             det *= -1;

@@ -1,10 +1,10 @@
 public class spl {
 
     public static double[][] inverse_Spl(double[][] matrix){ // menghasilkan solusi SPL menggunakan metode matrix balikan
-        double[][] cMat = DeterminantLibrary.copyMatrix(matrix);
+        double[][] cMat = operator.copyMatrix(matrix);
         int col = cMat[0].length;
 
-        double[][] inv = invers_identity.invert(operator.delColAt(cMat,col-1));
+        double[][] inv = invers.identity(operator.delColAt(cMat,col-1));
         double[][] b_cMat = operator.takeCol(cMat, col-1);
         operator.displayMatrix(inv);
 
@@ -14,7 +14,7 @@ public class spl {
     }
     
     public static double[][] gauss_Spl(double[][] matrix){ // menghasilkan solusi SPL menggunakan metode Gauss
-        double[][] cmat = DeterminantLibrary.copyMatrix(matrix);
+        double[][] cmat = operator.copyMatrix(matrix);
         int row = cmat.length;
         int col = row+1;
         double[][] result = new double[row][1];
@@ -33,7 +33,7 @@ public class spl {
     }
 
     public static double[][] gauss_Jordan_Spl(double[][] matrix){ // Menghasilkan solusi SPL menggunakan metode Gauss-Jordan
-        double[][] cmat = DeterminantLibrary.copyMatrix(matrix);
+        double[][] cmat = operator.copyMatrix(matrix);
         int row = cmat.length;
         int col = cmat[0].length;
         cmat = operator.echelonRowReduction(cmat);
@@ -51,12 +51,12 @@ public class spl {
         double[][] m2 = operator.takeCol(matrix, matrix[0].length-1);
         double[][] result = new double[row][1];
         double[][] dummy = new double[m1.length][m1[0].length];
-        double detMatAwal = DeterminantLibrary.detRowReduction(matrix);
+        double detMatAwal = determinant.detRowReduction(matrix);
         operator.displayMatrix(m1);
         operator.displayMatrix(m2);
         for (int i=0;i<row;i++){
             dummy = operator.swapCol(m1, m2, i);
-            det = DeterminantLibrary.detRowReduction(dummy)/detMatAwal;
+            det = determinant.detRowReduction(dummy)/detMatAwal;
             result[i][0] = det;
 
         }
