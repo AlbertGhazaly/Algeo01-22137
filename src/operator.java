@@ -107,6 +107,167 @@ public class operator {
         return cMat;
     }
 
+    public static double[][] copyMatrix(double[][] m){
+        /*
+        -------- SPESIFIKASI -------- 
+        Menghasilkan salinan matrix m
+        -------- KAMUS LOKAL --------
+        i, j : integer
+        copy : matrix [0..m.rowEff-1][0..m.colEff-1] of double
+        -------- REALISASI --------
+        */
+        double[][] temp = new double[m.length][m[0].length];
+        for (int i = 0; i < m.length; i++){
+            for (int j = 0; j < m[0].length; j++){
+                temp[i][j] = m[i][j];
+            }
+        }
+        return temp;
+    }
+
+    public static int leftZero(double[][] m, int row){
+        /*
+        -------- SPESIFIKASI -------- 
+        Menghitung jumlah angka 0 yang berada di sebelah kiri sebelum ada elemen non-nol
+        -------- KAMUS LOKAL --------
+        i, count : integer
+        -------- REALISASI --------
+        */
+        int i = 0;
+        int count = 0;
+        while (i < m[0].length){
+            if (m[row][i] == 0){
+                count += 1;
+            } else {
+                return count;
+            }
+            i += 1;
+        }
+        return count;
+    }
+
+    public static void switchRow(double[][] m, int r1, int r2){
+        /*
+        -------- SPESIFIKASI -------- 
+        I.S. : matrix m terdefinisi
+        F.S. : baris R1 dan R2 matrix m ditukar
+        -------- KAMUS LOKAL --------
+        i : integer
+        temp : double
+        -------- REALISASI --------
+        */        
+        double temp;
+        for (int i = 0; i < m[0].length; i++){
+            temp = m[r1][i];
+            m[r1][i] = m[r2][i];
+            m[r2][i] = temp;
+        }
+    }
+
+    public static boolean isBelowDiagonalZero(double[][] m){
+        /*
+        -------- SPESIFIKASI -------- 
+        Mengecek apakah semua elemen di bawah diagonal utama 0, mengembalikan true jika ya, false jika tidak
+        -------- KAMUS LOKAL --------
+        i, j : integer
+        -------- REALISASI --------
+        */      
+        for (int i = 1; i < m.length; i++){
+            for (int j = 0; j < i; j++){
+                if (m[i][j] != 0){
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
+    public static void substractRowByFactor(double[][] m, int r1, int r2, int startCol){
+        /*
+        -------- SPESIFIKASI -------- 
+        I.S. : matrix m terdefinisi
+        F.S. : baris r2 matrix m berkurang dengan rumus r2 = r2 - factor * r1 mulai kolom startCol
+        -------- KAMUS LOKAL --------
+        factor : double
+        i : integer
+        -------- REALISASI --------
+        */  
+        double factor = m[r2][startCol] / m[r1][startCol];
+        for (int i = startCol; i < m[0].length; i++){
+            m[r2][i] -= factor * m[r1][i];
+        }
+    }
+
+    public static double cofactorExp(double[][] m, int rowExc, int colExc){
+        /*
+        -------- SPESIFIKASI -------- 
+        Menghasilkan kofaktor baris rowExc dan kolom colExc untuk fungsi detCofactorExp
+        -------- KAMUS LOKAL --------
+        i, j, row, col : integer
+        cof : matrix [0..m.rowEff-1][0..m.colEff-1] of double 
+        det : double
+        -------- REALISASI --------
+        */  
+        double[][] cof = new double[m.length - 1][m[0].length - 1];
+        for (int i = 0; i < m.length; i++){
+            // Looping untuk mengisi matrix cof dari matrix m tanpa elemen-elemen pada baris rowExc dan kolom colExc
+            for (int j = 0; j < m[0].length; j++){
+                if ((i != rowExc) && (j != colExc)){
+                    int row = i;
+                    int col = j;
+                    if (i > rowExc){
+                        row -= 1;
+                    }
+                    if (j > colExc){
+                        col -= 1;
+                    }
+                    cof[row][col] = m[i][j];
+                }
+            }
+        }
+        double det = detCofactorExp(cof); // Menghitung determinan matriks cof
+        if ((rowExc + colExc) % 2 != 0){
+            // Optimalisasi nilai kofaktor
+            det *= -1;
+        }
+        return det;
+    }
+
+    public static double cofactorComb(double[][] m, int rowExc, int colExc){
+        /*
+        -------- SPESIFIKASI -------- 
+        Menghasilkan kofaktor baris rowExc dan kolom colExc untuk fungsi detCombination
+        -------- KAMUS LOKAL --------
+        i, j, row, col : integer
+        cof : matrix [0..m.rowEff-1][0..m.colEff-1] of double 
+        det : double
+        -------- REALISASI --------
+        */  
+        double[][] cof = new double[m.length - 1][m[0].length - 1];
+        for (int i = 0; i < m.length; i++){
+            // Looping untuk mengisi matrix cof dari matrix m tanpa elemen-elemen pada baris rowExc dan kolom colExc
+            for (int j = 0; j < m[0].length; j++){
+                if ((i != rowExc) && (j != colExc)){
+                    int row = i;
+                    int col = j;
+                    if (i > rowExc){
+                        row -= 1;
+                    }
+                    if (j > colExc){
+                        col -= 1;
+                    }
+                    cof[row][col] = m[i][j];
+                }
+            }
+        }
+        double det = detCombination(cof); // Menghitung determinan matriks cof
+        if ((rowExc + colExc) % 2 != 0){
+            // Optimalisasi nilai kofaktor
+            det *= -1;
+        }
+        return det;
+    }
+
 
     // public static void main(String[] args){
     //     double[][] m = {{1,1,1,6,2},
