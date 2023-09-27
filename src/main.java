@@ -33,7 +33,7 @@ public class main {
                 if (operator.isNoSolution(mat)){
                     System.out.println("Matrix tidak memiliki solusi");
                 }else if (operator.isSolutionParametric(mat)){
-                    System.out.println("Matrix memiliki solusi parametrik atau tak berhingga ");
+                    System.out.println("Matrix memiliki solusi parametrik atau solusi tak berhingga ");
                 }else{
                     if (opt1==1){
                         System.out.println("Solusi dihitung dengan metode Elminasi Gauss");

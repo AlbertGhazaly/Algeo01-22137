@@ -95,11 +95,13 @@ public class operator {
         int leftZeroId;
         for (int i=0;i<m.length;i++){
             leftZeroId = leftZero(m, i);
-            if (m[i][leftZeroId]!=1){
+            if (leftZeroId!=m[0].length){
+                if (m[i][leftZeroId]!=1){
                 double  leftzero = m[i][leftZeroId];
                 for (int j =leftZeroId;j<m[0].length;j++){
                     m[i][j] = m[i][j]/leftzero;
                 }
+            }
             }
         }
         return m;
@@ -363,10 +365,11 @@ public class operator {
         int col = mat[0].length;
         boolean flag = false; // sebagai penanda 
         int n = 0; // jumlah baris dimana hanya berisi 0 tiap kolom
+        int j = row-1;
         while (!flag){ // menghitung jumlah n
-            if (echelonRow_mat[row-1][col-1]==0){
+            if (echelonRow_mat[j][col-1]==0){
                 for (int i=0;i<col-1;i++){
-                    if (echelonRow_mat[row-1][i]!=0){
+                    if (echelonRow_mat[j][i]!=0){
                         flag = true;
                     }
                 }
@@ -376,6 +379,7 @@ public class operator {
             }else{
                 flag = true;
             }
+            j-=1;
         }     
         if (row-n<col-1){ // menentukan jenis solusi
             return true;
@@ -383,7 +387,6 @@ public class operator {
             return false;
         }
     }
-
 }
 
 
@@ -393,6 +396,11 @@ public class operator {
  1 2 3 4 30
  1 2 1 2 16
  2 2 1 3 21
+
+3 6 6 12 26
+6 14 11 26 55
+6 11 13 23 51
+12 26 23 50 107
 
  3 6 4 12 26
  6 14 13 26 55
