@@ -1,6 +1,22 @@
 // import java.text.DecimalFormat;
-
+import java.util.*;
 public class operator {
+    public static double[][] inputMatrix(){
+        Scanner in = new Scanner (System.in);
+        System.out.print("Masukkan jumlah baris: ");
+        int row = in.nextInt();
+        System.out.print("Masukkan jumlah Kolom: ");
+        int col = in.nextInt();
+        System.out.println("Masukkan nilai matrix: ");
+        double[][] mat = new double[row][col];
+        for (int i=0;i<row;i++){
+            for (int j=0;j<col;j++){
+                mat[i][j] = in.nextDouble();
+            }
+        }
+        return mat;
+
+    }
     public static void displayMatrix(double[][] mat){ //tampilin matriks
         int row = mat.length;
         int col = mat[0].length;
@@ -325,7 +341,49 @@ public class operator {
 
         return matrix;
     }
-    
-  }
+    public static boolean isNoSolution(double[][] mat){
+        double[][] echelonRow_mat = echelonRow(mat);
+        int row = mat.length;
+        int col = mat[0].length;
+        if (echelonRow_mat[row-1][col-1]!=0){
+            for (int i=0;i<col-1;i++){
+                if (echelonRow_mat[row-1][i]!=0){
+                    return false;
+                }
+            }
+            return true;
+        }else{
+            return false;
+        }
+    }
+    public static boolean isSolutionParametric(double[][] mat){
+        double[][] echelonRow_mat = echelonRow(mat);
+        int row = mat.length;
+        int col = mat[0].length;
+        boolean flag = false; // sebagai penanda 
+        int n = 0; // jumlah baris dimana hanya berisi 0 tiap kolom
+        while (!flag){ // menghitung jumlah n
+            if (echelonRow_mat[row-1][col-1]==0){
+                for (int i=0;i<col-1;i++){
+                    if (echelonRow_mat[row-1][i]!=0){
+                        flag = true;
+                    }
+                }
+                if (!flag){
+                    n +=1;
+                }
+            }else{
+                flag = true;
+            }
+        }     
+        if (row-n<col-1){ // menentukan jenis solusi
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+}
+
 
 
