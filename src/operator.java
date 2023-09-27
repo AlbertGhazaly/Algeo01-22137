@@ -3,8 +3,11 @@ import java.util.*;
 public class operator {
     public static double[][] inputMatrix(){
         Scanner in = new Scanner (System.in);
+        System.out.print("Masukkan jumlah baris: ");
         int row = in.nextInt();
+        System.out.print("Masukkan jumlah Kolom: ");
         int col = in.nextInt();
+        System.out.println("Masukkan nilai matrix: ");
         double[][] mat = new double[row][col];
         for (int i=0;i<row;i++){
             for (int j=0;j<col;j++){
@@ -338,7 +341,23 @@ public class operator {
 
         return matrix;
     }
+    public static boolean isNoSolution(double[][] mat){
+        double[][] echelonRow_mat = echelonRow(mat);
+        int row = mat.length;
+        int col = mat[0].length;
+        if (echelonRow_mat[row-1][col-1]!=0){
+            for (int i=0;i<col-1;i++){
+                if (echelonRow_mat[row-1][i]!=0){
+                    return false;
+                }
+            }
+            return true;
+        }else{
+            return false;
+        }
+    }
     
   }
+
 
 

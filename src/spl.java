@@ -58,7 +58,11 @@ public class spl {
 
         }
         return result;
-    }
+    }   
+    // public static void main(String[] args){
+    //     double[][] mat = operator.inputMatrix();
+    //     operator.displayMatrix(mat);
+    // }
 
  }
 

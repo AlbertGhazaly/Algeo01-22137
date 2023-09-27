@@ -22,7 +22,9 @@ public class main {
                 System.out.println("4. Kaidah Cramer");
                 System.out.println("Silakan pilih menu (1-4): ");
                 int opt1 = in.nextInt();
-                System.out.println("Progres belum sejauh itu.");            
+                System.out.println("Masukkan nilai SPL berupa matrix");            
+                double[][] mat = operator.inputMatrix();
+
             } else if (opt == 2){
                 System.out.println("Silakan pilih metode yang ingin digunakan: ");
                 System.out.println("1. Reduksi Baris");
