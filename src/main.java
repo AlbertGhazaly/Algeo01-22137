@@ -80,7 +80,20 @@ public class main {
                     input[i][1] = in.nextInt();
                 }
                 result = interpolasi.interpolate(input);
-                operator.displayMatrix(result);
+                
+                for (int i=0; i<result.length;i++){
+                    if (result[i][0]!=0){
+                        if (i==0){
+                            System.out.print(result[i][0]+" ");
+                        }else{
+                            if (result[i][0]<0){
+                                System.out.print(result[i][0]+"X^"+i+" ");
+                            }else{
+                                System.out.print("+"+result[i][0]+"X^"+i+" ");
+                            }
+                        }
+                    }
+                }
 
             } else if (opt == 5){
 
