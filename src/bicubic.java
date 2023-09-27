@@ -1,6 +1,6 @@
 public class bicubic {
 
-    public static int power(double base, int power){
+    private static int power(double base, int power){
 
         /* Fungsi pangkat untuk membantu perhitungan matrix interpolasi,
            fungsi ini diperlukan untuk mengatasi kalkulasi 0^0 */
