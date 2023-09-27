@@ -383,11 +383,6 @@ public class operator {
             return false;
         }
     }
-    public static void main(String[] args){
-        double[][] matrix = inputMatrix();
-        matrix = echelonRow(matrix);
-        displayMatrix(matrix);
-    }
 
 }
 
