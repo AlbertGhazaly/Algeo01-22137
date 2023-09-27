@@ -1,4 +1,5 @@
 // import java.text.DecimalFormat;
+import java.io.StringBufferInputStream;
 import java.util.*;
 public class operator {
     public static double[][] inputMatrix(){
@@ -382,8 +383,24 @@ public class operator {
             return false;
         }
     }
+    public static void main(String[] args){
+        double[][] matrix = inputMatrix();
+        matrix = echelonRow(matrix);
+        displayMatrix(matrix);
+    }
 
 }
 
 
 
+/*
+ 1 1 1 1 10
+ 1 2 3 4 30
+ 1 2 1 2 16
+ 2 2 1 3 21
+
+ 3 6 4 12 26
+ 6 14 13 26 55
+ 6 7 14 23 51
+ 12 2 23 50 107
+ */
