@@ -356,8 +356,34 @@ public class operator {
             return false;
         }
     }
-    
-  }
+    public static boolean isSolutionParametric(double[][] mat){
+        double[][] echelonRow_mat = echelonRow(mat);
+        int row = mat.length;
+        int col = mat[0].length;
+        boolean flag = false; // sebagai penanda 
+        int n = 0; // jumlah baris dimana hanya berisi 0 tiap kolom
+        while (!flag){ // menghitung jumlah n
+            if (echelonRow_mat[row-1][col-1]==0){
+                for (int i=0;i<col-1;i++){
+                    if (echelonRow_mat[row-1][i]!=0){
+                        flag = true;
+                    }
+                }
+                if (!flag){
+                    n +=1;
+                }
+            }else{
+                flag = true;
+            }
+        }     
+        if (row-n<col-1){ // menentukan jenis solusi
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+}
 
 
 
