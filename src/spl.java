@@ -18,13 +18,12 @@ public class spl {
         int col = row+1;
         double[][] result = new double[row][1];
         cmat = operator.echelonRow(cmat);
-        int subs;
-        int distRow;
+        double subs;
+        operator.displayMatrix(cmat);
         for (int i=row-1;i>=0;i--){
             subs = 0;
-            for (int j=i;j<row-1;j++){
-                distRow = row-1-j; // jarak baris j ke baris paling bawah (row-1)
-                subs += cmat[i][col-1-distRow]*result[row-distRow][0];
+            for (int j=0;j<row;j++){
+                subs += result[j][0]*cmat[i][j];
             }
             result[i][0] = (cmat[i][col-1]-subs)/cmat[i][i];
         }
@@ -59,10 +58,6 @@ public class spl {
         }
         return result;
     }   
-    // public static void main(String[] args){
-    //     double[][] mat = operator.inputMatrix();
-    //     operator.displayMatrix(mat);
-    // }
 
  }
 
