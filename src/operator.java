@@ -1,15 +1,17 @@
 // import java.text.DecimalFormat;
 import java.util.*;
 public class operator {
-    public static void inputMatrix(double[][] mat){
+    public static double[][] inputMatrix(){
         Scanner in = new Scanner (System.in);
-        int row = mat.length;
-        int col = mat[0].length;
+        int row = in.nextInt();
+        int col = in.nextInt();
+        double[][] mat = new double[row][col];
         for (int i=0;i<row;i++){
             for (int j=0;j<col;j++){
                 mat[i][j] = in.nextDouble();
             }
         }
+        return mat;
 
     }
     public static void displayMatrix(double[][] mat){ //tampilin matriks
