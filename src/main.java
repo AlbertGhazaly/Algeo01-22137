@@ -68,6 +68,19 @@ public class main {
                 int opt3 = in.nextInt();
                 System.out.println("Progres belum sejauh itu.");   
             } else if (opt == 4){
+                System.out.println("Tentukan besar derajat polinom:");
+                int n = in.nextInt();
+                n +=1;  
+                System.out.println("Silahkan masukkan input berupa:");
+                System.out.println("x f(x)");
+                double[][] input = new double[n][2];
+                double[][] result;
+                for (int i=0;i<n;i++){
+                    input[i][0] = in.nextInt();
+                    input[i][1] = in.nextInt();
+                }
+                result = interpolasi.interpolate(input);
+                operator.displayMatrix(result);
 
             } else if (opt == 5){
 

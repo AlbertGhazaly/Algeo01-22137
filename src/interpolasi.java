@@ -1,16 +1,16 @@
 public class interpolasi {
-    public static double[][] interpol(double[][] mat){
+    public static double[][] interpolate(double[][] input){
+        double[][] mat = new double[input.length][input.length+1];
         int row = mat.length;
         int col = mat[0].length;
-        double[][] interpol_mat = operator.copyMatrix(mat);
-        double[][] result = new double[row][1];
         for (int i=0;i<row;i++){
-            for (int j=0;j<col-1;j++){
-                interpol_mat[i][j] = Math.pow(interpol_mat[i][col-1],(j+1));
+            for (int j = 0;j<col-1;j++){
+                mat[i][j] = Math.pow(input[i][0], j);
             }
+            mat[i][col-1] = input[i][1];
         }
-        result = spl.gauss_Jordan_Spl(interpol_mat);
+        double[][] result = new double[row][1];
+        result = spl.gauss_Jordan_Spl(mat);
         return result;
     }
-    
 }
