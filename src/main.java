@@ -33,7 +33,7 @@ public class main {
                 if (operator.isNoSolution(mat)){
                     System.out.println("Matrix tidak memiliki solusi");
                 }else if (operator.isSolutionParametric(mat)){
-                    System.out.println("Matrix memiliki solusi parametrik atau solusi tak berhingga ");
+                    System.out.println("Oleh karena itu, Matrix memiliki solusi parametrik atau solusi tak berhingga ");
                 }else{
                     if (opt1==1){
                         System.out.println("Solusi dihitung dengan metode Elminasi Gauss");
@@ -49,7 +49,9 @@ public class main {
                         solusi = spl.crammer_Spl(mat);
                     }
                     System.out.println("Hasil Perhitungan: ");
-                    operator.displayMatrix(solusi);
+                    for (int i=0;i<solusi.length;i++){
+                        System.out.println("X"+(i+1)+": "+solusi[i][0]+" ");
+                    }
                 }
 
             } else if (opt == 2){
@@ -101,8 +103,8 @@ public class main {
                 double[][] input = new double[n][2];
                 double[][] result;
                 for (int i=0;i<n;i++){
-                    input[i][0] = in.nextInt();
-                    input[i][1] = in.nextInt();
+                    input[i][0] = in.nextDouble();
+                    input[i][1] = in.nextDouble();
                 }
                 result = interpolasi.interpolate(input);
                 
@@ -119,6 +121,7 @@ public class main {
                         }
                     }
                 }
+                System.out.println();
 
             } else if (opt == 5){
 
