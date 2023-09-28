@@ -29,6 +29,17 @@ public class operator {
         }
     }
 
+    public static void displayMatrixInt(int[][] mat){ //tampilin matriks
+        int row = mat.length;
+        int col = mat[0].length;
+        for (int i=0;i<row;i++){
+            for (int j=0;j<col;j++){
+                System.out.print(mat[i][j]+"  ");
+            }
+            System.out.println();
+        }
+    }
+
     public static double[][] delColAt(double[][] matrix,int colId){ // hasilin duplikat matriks yang didelete kolom colId 
         int row = matrix.length;
         int col = matrix[0].length;
