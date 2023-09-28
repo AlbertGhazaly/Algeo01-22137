@@ -154,7 +154,7 @@ public class main {
                 System.out.println("x1 x2 ... xn");
                 double[] input = new double[n];
                 for (int i = 0; i < input.length; i++){
-                    input[i] = in.nextInt();
+                    input[i] = in.nextDouble();
                 }
                 double taksiran = 0;
                 for (int i = 0; i < result.length; i++){
