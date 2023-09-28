@@ -59,7 +59,7 @@ public class main {
                 System.out.println("Silakan masukkan elemen matrix persegi " + row + "x" + row +": ");
                 for (int i = 0; i < row; i++){
                     for (int j = 0; j < row; j++){
-                        matrix[i][j] = in.nextInt();
+                        matrix[i][j] = in.nextDouble();
                     }
                 }
                 System.out.println("Silakan pilih metode yang ingin digunakan: ");
@@ -128,7 +128,7 @@ public class main {
                 double[][] data = new double[m][n+1];
                 for (int i = 0; i < m; i++){
                     for (int j = 0; j < n + 1; j++){
-                        data[i][j] = in.nextInt();
+                        data[i][j] = in.nextDouble();
                     }
                 }
                 double[][] result = multiplelinreg.multipleLinReg(data);
