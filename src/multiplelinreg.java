@@ -15,10 +15,10 @@ public class multiplelinreg{
         double[][] matrixB = new double[m[0].length][m[0].length+1];
         double El1 = 0;
         double El2 = 0;
-        for (int i = 0; i < matrixB.length; i++){
+        for (int i = 0; i < matrixB.length; i++){ // Looping untuk mengisi elemen matrixB
             for (int j = 0; j < matrixB[0].length; j++){
                 double val = 0;
-                for (int k = 0; k < m.length; k++){
+                for (int k = 0; k < m.length; k++){ // Looping untuk sum of product
                     if (i == 0){
                         El1 = 1.0;
                     } else {
