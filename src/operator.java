@@ -393,6 +393,14 @@ public class operator {
             j-=1;
         }     
         if (row-n<col-1){ // menentukan jenis solusi
+            if (n>0){
+                displayMatrix(echelonRow_mat);
+                for (int i=0;i<n;i++){
+                    System.out.println("baris matrix eselon baris ke-"+row+" bernilai 0 semua");
+                }
+            }else{
+                System.out.println("Jumlah persamaan yang dimasukkan tidak cukup untuk mencari solusi");
+            }
             return true;
         }else{
             return false;

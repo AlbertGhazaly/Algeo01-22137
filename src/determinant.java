@@ -37,8 +37,6 @@ public class determinant{
                 }
             }
         }
-        System.out.println("Hasil reduksi baris: ");
-        operator.displayMatrix(m);
         for (int i = 0; i < m.length; i++){
             // Mengalikan diagonal utama setelah baris direduksi
             det *= m[i][i];
