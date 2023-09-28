@@ -53,13 +53,34 @@ public class main {
                 }
 
             } else if (opt == 2){
+                System.out.println("Silakan masukkan baris matrix persegi: ");
+                int row = in.nextInt();
+                double[][] matrix = new double[row][row];
+                System.out.println("Silakan masukkan elemen matrix persegi " + row + "x" + row +": ");
+                for (int i = 0; i < row; i++){
+                    for (int j = 0; j < row; j++){
+                        matrix[i][j] = in.nextInt();
+                    }
+                }
                 System.out.println("Silakan pilih metode yang ingin digunakan: ");
                 System.out.println("1. Reduksi Baris");
                 System.out.println("2. Ekspansi Kofaktor");
                 System.out.println("3. Kombinasi Reduksi Baris dan Ekspansi Kofaktor");
                 System.out.println("Silakan pilih menu (1-3): ");
                 int opt2 = in.nextInt();
-                System.out.println("Progres belum sejauh itu.");           
+                if (opt2 == 1){
+                    System.out.println("Determinan dihitung dengan metode Reduksi Baris: ");
+                    double det = determinant.detRowReduction(matrix);
+                    System.out.println("Determinan: " + det);
+                } else if (opt2 == 2){
+                    System.out.println("Determinan dihitung dengan metode Ekspansi Kofaktor: ");
+                    double det = determinant.detCofactorExp(matrix);
+                    System.out.println("Determinan: " + det);
+                } else {
+                    System.out.println("Determinan dihitung dengan metode Kombinasi Reduksi Baris dan Ekspansi Kofaktor: ");
+                    double det = determinant.detCombination(matrix);
+                    System.out.println("Determinan: " + det);
+                }    
             } else if (opt == 3){
                 System.out.println("Silakan pilih metode yang ingin digunakan: ");
                 System.out.println("1. Menggunakan matriks identitas");
@@ -98,6 +119,45 @@ public class main {
             } else if (opt == 5){
 
             } else if (opt == 6){
+                System.out.println("Masukkan banyaknya peubah x: ");
+                int n = in.nextInt();
+                System.out.println("Masukkan banyaknya sampel: ");
+                int m = in.nextInt();
+                System.out.println("Masukkan nilai x dan y dengan format: ");
+                System.out.println("x1 x2 ... xn y");
+                double[][] data = new double[m][n+1];
+                for (int i = 0; i < m; i++){
+                    for (int j = 0; j < n + 1; j++){
+                        data[i][j] = in.nextInt();
+                    }
+                }
+                double[][] result = multiplelinreg.multipleLinReg(data);
+                System.out.println("Hasil regresi: ");
+                System.out.print("y = ");
+                for (int i = 0; i < result.length; i++){
+                    if (i == result.length - 1){
+                        System.out.println(result[i][0] + "x_"+ i);
+                    } else if (i == 0) {
+                        System.out.print(result[i][0] + " + ");
+                    } else {
+                        System.out.print(result[i][0] + "x_"+ i + " + ");
+                    }
+                }
+                System.out.println("Masukkan nilai x untuk ditafsir dengan format: ");
+                System.out.println("x1 x2 ... xn");
+                double[] input = new double[n];
+                for (int i = 0; i < input.length; i++){
+                    input[i] = in.nextInt();
+                }
+                double taksiran = 0;
+                for (int i = 0; i < result.length; i++){
+                    if (i == 0){
+                        taksiran += result[i][0];
+                    } else {
+                        taksiran += result[i][0] * input[i - 1];
+                    }
+                }
+                System.out.println("y = " + taksiran);
 
             } else if (opt == 7){
                 break;
