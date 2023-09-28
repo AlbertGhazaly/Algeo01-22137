@@ -68,6 +68,10 @@ public class main {
                 System.out.println("3. Kombinasi Reduksi Baris dan Ekspansi Kofaktor");
                 System.out.println("Silakan pilih menu (1-3): ");
                 int opt2 = in.nextInt();
+                while (opt2 <= 0 && opt2 > 3){
+                    System.out.print("Opsi tidak sesuai, silahkan input kembali: ");
+                    opt2 = in.nextInt();
+                }
                 if (opt2 == 1){
                     System.out.println("Determinan dihitung dengan metode Reduksi Baris: ");
                     double det = determinant.detRowReduction(matrix);
