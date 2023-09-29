@@ -54,6 +54,9 @@ public class main {
                     }
                 }
 
+                System.out.println("Ketik 1 dan [enter] untuk kembali ke Menu Utama.");
+                int back = in.nextInt();
+
             } else if (opt == 2){
                 System.out.println("Silakan masukkan baris matrix persegi: ");
                 int row = in.nextInt();
@@ -86,14 +89,22 @@ public class main {
                     System.out.println("Determinan dihitung dengan metode Kombinasi Reduksi Baris dan Ekspansi Kofaktor: ");
                     double det = determinant.detCombination(matrix);
                     System.out.println("Determinan: " + det);
-                }    
+                }
+
+                System.out.println("Ketik 1 dan [enter] untuk kembali ke Menu Utama.");
+                int back = in.nextInt();
+                    
             } else if (opt == 3){
                 System.out.println("Silakan pilih metode yang ingin digunakan: ");
                 System.out.println("1. Menggunakan matriks identitas");
                 System.out.println("2. Metode adjoin");
                 System.out.println("Silakan pilih menu (1-2): ");
                 int opt3 = in.nextInt();
-                System.out.println("Progres belum sejauh itu.");   
+                System.out.println("Progres belum sejauh itu."); 
+
+                System.out.println("Ketik 1 dan [enter] untuk kembali ke Menu Utama.");
+                int back = in.nextInt();
+
             } else if (opt == 4){
                 System.out.println("Tentukan besar derajat polinom:");
                 int n = in.nextInt();
@@ -123,7 +134,13 @@ public class main {
                 }
                 System.out.println();
 
+                System.out.println("Ketik 1 dan [enter] untuk kembali ke Menu Utama.");
+                int back = in.nextInt();
+
             } else if (opt == 5){
+
+                System.out.println("Ketik 1 dan [enter] untuk kembali ke Menu Utama.");
+                int back = in.nextInt();
 
             } else if (opt == 6){
                 System.out.println("Masukkan banyaknya peubah x: ");
@@ -165,6 +182,9 @@ public class main {
                     }
                 }
                 System.out.println("y = " + taksiran);
+
+                System.out.println("Ketik 1 dan [enter] untuk kembali ke Menu Utama.");
+                int back = in.nextInt();
 
             } else if (opt == 7){
                 break;
