@@ -1,4 +1,5 @@
 import java.util.*;
+import java.io.*;
 
 public class main {
     public static void main(String[] args){
@@ -26,27 +27,25 @@ public class main {
                     System.out.print("Opsi tidak sesuai, silahkan input kembali: ");
                     opt1 = in.nextInt();
                 }
-
-                System.out.println("Masukkan nilai SPL berupa matrix");            
-                double[][] mat = operator.inputMatrix();
                 double[][] solusi;
-                if (operator.isNoSolution(mat)){
-                    System.out.println("Matrix tidak memiliki solusi");
-                }else if (operator.isSolutionParametric(mat)){
-                    System.out.println("Oleh karena itu, Matrix memiliki solusi parametrik atau solusi tak berhingga ");
+                double[][] matrix = operator.inputMatrix();
+                if (operator.isNoSolution(matrix)){
+                    System.out.println("matrix tidak memiliki solusi");
+                }else if (operator.isSolutionParametric(matrix)){
+                    System.out.println("Oleh karena itu, matrix memiliki solusi parametrik atau solusi tak berhingga ");
                 }else{
                     if (opt1==1){
                         System.out.println("Solusi dihitung dengan metode Elminasi Gauss");
-                        solusi = spl.gauss_Spl(mat);
+                        solusi = spl.gauss_Spl(matrix);
                     }else if (opt1 ==2){
                         System.out.println("Solusi dihitung dengan metode Elminasi Gauss-Jordan");
-                        solusi = spl.gauss_Jordan_Spl(mat);
+                        solusi = spl.gauss_Jordan_Spl(matrix);
                     }else if (opt1==3){
                         System.out.println("Solusi dihitung dengan metode Matriks Balikan");
-                        solusi = spl.inverse_Spl(mat);
+                        solusi = spl.inverse_Spl(matrix);
                     }else{
                         System.out.println("Solusi dihitung dengan metode Kaidah Crammer");
-                        solusi = spl.crammer_Spl(mat);
+                        solusi = spl.crammer_Spl(matrix);
                     }
                     System.out.println("Hasil Perhitungan: ");
                     for (int i=0;i<solusi.length;i++){

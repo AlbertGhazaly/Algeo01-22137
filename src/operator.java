@@ -1,6 +1,6 @@
 // import java.text.DecimalFormat;
-import java.io.StringBufferInputStream;
 import java.util.*;
+import java.io.*;
 public class operator {
     public static double[][] inputMatrix(){
         Scanner in = new Scanner (System.in);
@@ -8,15 +8,56 @@ public class operator {
         int row = in.nextInt();
         System.out.print("Masukkan jumlah Kolom: ");
         int col = in.nextInt();
-        System.out.println("Masukkan nilai matrix: ");
-        double[][] mat = new double[row][col];
-        for (int i=0;i<row;i++){
-            for (int j=0;j<col;j++){
-                mat[i][j] = in.nextDouble();
+        System.out.println("Pilih cara input matrix: ");
+        System.out.println("1. File ");
+        System.out.println("2. CLI");
+        int opt2 = in.nextInt();
+        while (opt2<=0 && opt2>2){
+            System.out.print("Opsi tidak sesuai, silahkan input kembali: ");
+            opt2 = in.nextInt();
+        }
+        if (opt2==2){
+            System.out.println("Masukkan nilai matrix: ");
+            double[][] mat = new double[row][col];
+            for (int i=0;i<row;i++){
+                for (int j=0;j<col;j++){
+                    mat[i][j] = in.nextDouble();
+                }
+            }
+            in.close();
+            return mat;
+        }else{
+            try{
+                Scanner scan = new Scanner (System.in);
+                double[][] mat = new double[row][col];
+                File myFile = new File(scan.nextLine());
+                Scanner Reader = new Scanner(myFile);
+                int i = 0;
+                while (Reader.hasNextLine()&&i<row) {
+                    for (int j=0;j<col;j++){
+                        mat[i][j] = Reader.nextDouble();
+                    }
+                    
+                    i++;
+                }
+                scan.close();
+                Reader.close();
+                return mat;
+            }catch (FileNotFoundException e) {
+                System.out.println("ERROR, can't read FILE");
+                e.printStackTrace();
+                System.out.println("Membaca matrix terpaksa melalui CLI");
+                System.out.println("Masukkan nilai matrix: ");
+                double[][] mat = new double[row][col];
+                for (int i=0;i<row;i++){
+                    for (int j=0;j<col;j++){
+                        mat[i][j] = in.nextDouble();
+                    }
+                }
+                in.close();
+                return mat;
             }
         }
-        return mat;
-
     }
     public static void displayMatrix(double[][] mat){ //tampilin matriks
         int row = mat.length;
@@ -406,6 +447,7 @@ public class operator {
             return false;
         }
     }
+
 }
 
 
