@@ -6,9 +6,11 @@ public class bicubic {
            fungsi ini diperlukan untuk mengatasi kalkulasi 0^0 */
 
         if (power == 0){
+            return 1;   
+        } else if (power < 0){
             return 1;
-
-        } else {
+        }
+        else {
             return (double) Math.pow(base, power);
         }
     }
@@ -34,7 +36,7 @@ public class bicubic {
 
                         /* F(x,y) */
                         if (row < 4){
-                            intpMatrix[row][col] = (power((double) x, i)*power((double) y, j));
+                            intpMatrix[row][col] = (power( x, i)*power((double) y, j));
 
                         /* Fx(x,y) */
                         } else if (row < 8){
@@ -57,6 +59,7 @@ public class bicubic {
                 }
             }
         }
+        // operator.displayMatrix(intpMatrix);
 
         /* Mereturn invers dari matrix interpolasi agar bisa langsung dipakai
            untuk mencari matrix koefisien interpolasi dengan cara mengkalikan 
@@ -99,23 +102,26 @@ public class bicubic {
         return VAL;
     }
     
-    public static void main(String[] args){
+    // public static void main(String[] args){
 
-        /* 16 data values (dari studi kasus) untuk mencari koefisien interpolasi */
-        double[][] data = {{21, 98,  125, 153},
-                           {51, 101, 161, 59 },
-                           {0 , 42,  72,  210},
-                           {16, 12,  81,  96}};
+    //     /* 16 data values (dari studi kasus) untuk mencari koefisien interpolasi */
+    //     double[][] data = {{21, 98,  125, 153},
+    //                        {51, 101, 161, 59 },
+    //                        {0 , 42,  72,  210},
+    //                        {16, 12,  81,  96}};
 
-        /* Menyimpan matrix Bicubic Spline Inteerpolation pada variabel
-           karena bakal sering dipake jadi biar sekali compute aja */
-        double[][] BSI_MATRIX = get_BSI_MATRIX();
+    //     /* Menyimpan matrix Bicubic Spline Inteerpolation pada variabel
+    //        karena bakal sering dipake jadi biar sekali compute aja */
+    //     double[][] BSI_MATRIX = get_BSI_MATRIX();
+    //     // operator.displayMatrix(BSI_MATRIX);
 
-        /* Mencari koefisien interpolasi, fungsi ini bakal dijalanin berkali-kali
-           untuk setiap dataset yang berbeda */
-        double[][] BSI_COEF = get_BSI_COEF(data, BSI_MATRIX);
+    //     /* Mencari koefisien interpolasi, fungsi ini bakal dijalanin berkali-kali
+    //        untuk setiap dataset yang berbeda */
+    //     double[][] BSI_COEF = get_BSI_COEF(data, BSI_MATRIX);
+    //     // operator.displayMatrix(BSI_COEF);
 
-        /* Contoh penggunaan Bicubic Spline Interpolation untuk mencari nilai f(x,y) */
-        double FuncVal = get_BSI_VAL(BSI_COEF, 0.1, 0.1);
-    }
+    //     /* Contoh penggunaan Bicubic Spline Interpolation untuk mencari nilai f(x,y) */
+    //     double FuncVal = get_BSI_VAL(BSI_COEF, 0.1, 0.1);
+    //     // System.out.println(FuncVal);
+    // }
 }
