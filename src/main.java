@@ -4,7 +4,7 @@ import java.io.*;
 public class main {
     public static void main(String[] args){
         try{
-            FileOutputStream fileStream = new FileOutputStream("output.txt");
+            FileOutputStream fileStream = new FileOutputStream("out/output.txt");
             MultiOutputStream multiStream = new MultiOutputStream(System.out, fileStream);
             PrintStream output = new PrintStream(multiStream, true); // Stream baru -> output ditampilkan di CLI dan disimpan di output.txt
             PrintStream console = System.out;// stream biasa -> output hanya akan ditampilkan di CLI, tetapi tidak disimpan
@@ -199,6 +199,15 @@ public class main {
                     int back = in.nextInt();
 
                 } else if (opt == 7){
+                    File delfile = new File("out/output.txt");
+                    System.out.println("Apakah output ingin disimpan?");
+                    System.out.println("1. Iya ");
+                    System.out.println("2. Tidak");
+                    int opt3 = in.nextInt();
+                    if (opt3 == 2){
+                        fileStream.close(); 
+                        delfile.delete(); //delete file
+                    }
                     break;
                 }
             }    
