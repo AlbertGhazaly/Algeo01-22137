@@ -24,12 +24,13 @@ public class operator {
                     mat[i][j] = in.nextDouble();
                 }
             }
-            in.close();
             return mat;
         }else{
             try{
                 Scanner scan = new Scanner (System.in);
                 double[][] mat = new double[row][col];
+                System.out.println("Masukkan path file yang ingin dibaca: ");
+                System.out.print("PATH: ");
                 File myFile = new File(scan.nextLine());
                 Scanner Reader = new Scanner(myFile);
                 int i = 0;
@@ -45,7 +46,6 @@ public class operator {
                 return mat;
             }catch (FileNotFoundException e) {
                 System.out.println("ERROR, can't read FILE");
-                e.printStackTrace();
                 System.out.println("Membaca matrix terpaksa melalui CLI");
                 System.out.println("Masukkan nilai matrix: ");
                 double[][] mat = new double[row][col];
@@ -437,7 +437,7 @@ public class operator {
             if (n>0){
                 displayMatrix(echelonRow_mat);
                 for (int i=0;i<n;i++){
-                    System.out.println("baris matrix eselon baris ke-"+row+" bernilai 0 semua");
+                    System.out.println("baris matrix eselon baris ke-"+(row-i)+" bernilai 0 semua");
                 }
             }else{
                 System.out.println("Jumlah persamaan yang dimasukkan tidak cukup untuk mencari solusi");

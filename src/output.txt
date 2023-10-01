@@ -1,0 +1,10 @@
+Sistem Persamaan Linear
+1.0  2.0  2.0  4.0  8.666666666666666  
+0.0  1.0  -0.5  1.0  1.5  
+0.0  0.0  1.0  0.0  1.0  
+0.0  0.0  0.0  0.0  0.0  
+baris matrix eselon baris ke-4 bernilai 0 semua
+Oleh karena itu, matrix memiliki solusi parametrik atau solusi tak berhingga 
+
+Solusi hasil perhitungan interpolasi: 
+1.0 +1.0X^1 
