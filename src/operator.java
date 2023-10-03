@@ -433,6 +433,26 @@ public class operator {
             }
             j-=1;
         }     
+        double[][] solusi = new double[row][(col-row-1)+1+n];
+        for (int a=row-1;a>=0;a--){
+            double sum = 0;
+            int x = 0;
+            for (int b=n+(col-row-1);b>0;b--){ //hitung solusi parametrik
+                    solusi[a][b] -= echelonRow_mat[a][col-2-x];
+                    x += 1;
+            }
+
+            for (int b=col-2-(col-row-1+n);b>a;b--){ //col-2 -> col-2-n; c = n->0; col - (row+1)+n
+                for (int c = n+(col-row-1);c>0;c--){
+                    if (a!=row-1){
+                        solusi[a][c] -= (echelonRow_mat[a][b]*solusi[b][c]);
+                    }
+                }
+                sum += echelonRow_mat[a][b]*solusi[b][0];
+            }
+            solusi[a][0]= echelonRow_mat[a][col-1]-sum;
+
+        }
         if (row-n<col-1){ // menentukan jenis solusi
             if (n>0){
                 displayMatrix(echelonRow_mat);
@@ -440,8 +460,23 @@ public class operator {
                     System.out.println("baris matrix eselon baris ke-"+(row-i)+" bernilai 0 semua");
                 }
             }else{
-                System.out.println("Jumlah persamaan yang dimasukkan tidak cukup untuk mencari solusi");
+                System.out.println("Jumlah persamaan yang dimasukkan tidak cukup");
+                
             }
+            System.out.println("Solusi menjadi: ");
+            for (int i=0;i<row;i++){
+
+                System.out.print("X"+(i+1)+": "+solusi[i][0]+" ");
+                for (int k =1;k<(col-row-1)+n+1;k++){
+                    if (solusi[i][k]>0){
+                        System.out.print("+"+solusi[i][k]+"X"+(row+k)+" ");    
+                    }else if (solusi[i][k]<0){
+                        System.out.print(solusi[i][k]+"X"+(row+k)+" ");
+                    }
+                }
+                System.out.println();
+            }
+
             return true;
         }else{
             return false;
@@ -467,4 +502,8 @@ public class operator {
  6 14 13 26 55
  6 7 14 23 51
  12 2 23 50 107
+
+ 3 6 6 12 1 26
+6 14 11 26 2 55
+6 11 13 23 3 51
  */
