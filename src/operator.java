@@ -419,7 +419,7 @@ public class operator {
         int n = 0; // jumlah baris dimana hanya berisi 0 tiap kolom
         int j = row-1;
         while (!flag){ // menghitung jumlah n
-            if (echelonRow_mat[j][col-1]==0){
+            if (echelonRow_mat[j][col-1]==0 ){
                 for (int i=0;i<col-1;i++){
                     if (echelonRow_mat[j][i]!=0){
                         flag = true;
@@ -433,54 +433,98 @@ public class operator {
             }
             j-=1;
         }     
-        double[][] solusi = new double[row][(col-row-1)+1+n];
-        for (int a=row-1;a>=0;a--){
-            double sum = 0;
-            int x = 0;
-            for (int b=n+(col-row-1);b>0;b--){ //hitung solusi parametrik
-                    solusi[a][b] -= echelonRow_mat[a][col-2-x];
-                    x += 1;
+        int row_not_one = 0;
+        for (int i=0;i<echelonRow_mat.length;i++){
+            if (echelonRow_mat[i][i]==0 && echelonRow_mat[i][col-1]!=0){
+                row_not_one += 1;
             }
+        }
+        int id = 0;
+        int[] arr_not_one = new int[row_not_one];
+        for (int i=0;i<echelonRow_mat.length;i++){
+            if (echelonRow_mat[i][i]==0 && echelonRow_mat[i][col-1]!=0){
+                arr_not_one[id] = i;
+                id +=1;
+            }
+        }
+        double[][] solusi = new double[row][(col-row-1)+1+n+row_not_one];
+        for (int a=row-1;a>=0;a--){
+            if (!(isIn(a, arr_not_one))){
+                double sum = 0;
+                int x = 0;
+                for (int b=n+(col-row-1);b>0;b--){ //hitung solusi parametrik
+                        solusi[a][b+row_not_one] -= echelonRow_mat[a][col-2-x];
+                        x += 1;
+                }
 
-            for (int b=col-2-(col-row-1+n);b>a;b--){ //col-2 -> col-2-n; c = n->0; col - (row+1)+n
-                for (int c = n+(col-row-1);c>0;c--){
-                    if (a!=row-1){
-                        solusi[a][c] -= (echelonRow_mat[a][b]*solusi[b][c]);
+                for (int b=col-2-(col-row-1+n);b>a;b--){ //col-2 -> col-2-n; c = n->0; col - (row+1)+n
+                    for (int c = n+(col-row-1);c>0;c--){
+                        if (a!=row-1){
+                            solusi[a][c] -= (echelonRow_mat[a][b]*solusi[b][c]);
+                        }
+                    }
+                    if (isIn(b, arr_not_one)){
+                        System.out.println("ada");
+                        id = 0;
+                        int i=0;
+                        while(arr_not_one[i]!=b){
+                            id +=1;
+                            i +=i;
+                        }
+                        id +=1;
+                        solusi[a][id] -= echelonRow_mat[a][b];
+                    }else{
+                        sum += echelonRow_mat[a][b]*solusi[b][0];
                     }
                 }
-                sum += echelonRow_mat[a][b]*solusi[b][0];
+                solusi[a][0]= echelonRow_mat[a][col-1]-sum;
             }
-            solusi[a][0]= echelonRow_mat[a][col-1]-sum;
 
         }
-        if (row-n<col-1){ // menentukan jenis solusi
+        if (row-n<col-1+row_not_one){ // menentukan jenis solusi
             if (n>0){
                 displayMatrix(echelonRow_mat);
                 for (int i=0;i<n;i++){
                     System.out.println("baris matrix eselon baris ke-"+(row-i)+" bernilai 0 semua");
                 }
             }else{
-                System.out.println("Jumlah persamaan yang dimasukkan tidak cukup");
+                System.out.println("persamaan yang dimasukkan tidak cukup");
                 
             }
             System.out.println("Solusi menjadi: ");
-            for (int i=0;i<row;i++){
-
-                System.out.print("X"+(i+1)+": "+solusi[i][0]+" ");
-                for (int k =1;k<(col-row-1)+n+1;k++){
-                    if (solusi[i][k]>0){
-                        System.out.print("+"+solusi[i][k]+"X"+(row+k)+" ");    
-                    }else if (solusi[i][k]<0){
-                        System.out.print(solusi[i][k]+"X"+(row+k)+" ");
+            for (int i=0;i<row-n;i++){
+                if (!(isIn(i, arr_not_one))){
+                    System.out.print("X"+(i+1)+": "+solusi[i][0]+" ");
+                    for (int k=1;k<row_not_one+1;k++){
+                        if (solusi[i][k]>0){
+                            System.out.print("+"+solusi[i][k]+"X"+(arr_not_one[k-1]+1)+" ");    
+                        }else if (solusi[i][k]<0){
+                            System.out.print(solusi[i][k]+"X"+(arr_not_one[k-1]+1)+" ");
+                        }
                     }
+                    for (int k =1+row_not_one;k<(col-row-1)+n+1+row_not_one;k++){
+                        if (solusi[i][k]>0){
+                            System.out.print("+"+solusi[i][k]+"X"+(row+k-row_not_one-n)+" ");    
+                        }else if (solusi[i][k]<0){
+                            System.out.print(solusi[i][k]+"X"+(row+k-row_not_one-n)+" ");
+                        }
                 }
                 System.out.println();
+                }
             }
 
             return true;
         }else{
             return false;
         }
+    }
+    public static boolean isIn(int a, int[] b){
+        for (int i=0;i<b.length;i++){
+            if (a==b[i]){
+                return true;
+            }
+        }
+        return false;
     }
 
 }
@@ -506,4 +550,12 @@ public class operator {
  3 6 6 12 1 26
 6 14 11 26 2 55
 6 11 13 23 3 51
+
+1 1 1 3
+1 1 2 4
+1 1 3 5
+
+1 1 1 1
+1 1 1 1
+1 1 1 1
  */
