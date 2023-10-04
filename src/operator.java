@@ -2,7 +2,7 @@
 import java.util.*;
 import java.io.*;
 public class operator {
-    public static double[][] inputMatrix(){
+    public static double[][] inputMatrix(){ //menerima nilai matrix -> matriks
         Scanner in = new Scanner (System.in);
         System.out.print("Masukkan jumlah baris: ");
         int row = in.nextInt();
@@ -54,7 +54,6 @@ public class operator {
                         mat[i][j] = in.nextDouble();
                     }
                 }
-                in.close();
                 return mat;
             }
         }
@@ -171,7 +170,7 @@ public class operator {
         }
         return m;
     }
-    public static double[][] swapCol(double[][] mat1, double[][] rowMat, int idX){
+    public static double[][] swapCol(double[][] mat1, double[][] rowMat, int idX){ // menukar kolom matriks
         double[][] cMat = copyMatrix(mat1);
         int row = mat1.length;
         for (int i=0;i<row;i++){
@@ -180,7 +179,7 @@ public class operator {
         return cMat;
     }
 
-    public static double[][] copyMatrix(double[][] m){
+    public static double[][] copyMatrix(double[][] m){ 
         /*
         -------- SPESIFIKASI -------- 
         Menghasilkan salinan matrix m
@@ -368,7 +367,7 @@ public class operator {
     //     }
     // }
 
-    public static double[][] transpose(double[][] matrix){
+    public static double[][] transpose(double[][] matrix){ // mentraspose matriks
 
         int row = matrix.length, col = matrix[0].length;
         double[][] mT = new double[row][col];
@@ -383,7 +382,7 @@ public class operator {
         return mT;
     }
 
-    public static double[][] scalarMult(double coefficient, double[][] matrix){
+    public static double[][] scalarMult(double coefficient, double[][] matrix){ // mengkalikan matriks dengan skalar
 
         int row = matrix.length, col = matrix[0].length;
 
@@ -396,7 +395,7 @@ public class operator {
 
         return matrix;
     }
-    public static boolean isNoSolution(double[][] mat){
+    public static boolean isNoSolution(double[][] mat){ // matriks gada solusi
         double[][] echelonRow_mat = echelonRow(mat);
         int row = mat.length;
         int col = mat[0].length;
@@ -411,7 +410,7 @@ public class operator {
             return false;
         }
     }
-    public static boolean isSolutionParametric(double[][] mat){
+    public static boolean isSolutionParametric(double[][] mat){ // solusi parametrik
         double[][] echelonRow_mat = echelonRow(mat);
         int row = mat.length;
         int col = mat[0].length;
