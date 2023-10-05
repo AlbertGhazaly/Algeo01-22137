@@ -39,7 +39,6 @@ Memperbesar resolusi gambar dengan memanfaatkan Interpolasi Bicubic Spline.
 │   ├───interpolasi.class
 │   ├───invers.class
 │   ├───main.class
-│   ├───main.class
 │   ├───operator.class
 │   ├───operatormultiplelinreg.class
 │   └───spl.class
@@ -53,7 +52,6 @@ Memperbesar resolusi gambar dengan memanfaatkan Interpolasi Bicubic Spline.
 │   ├───imageProcessing.java
 │   ├───interpolasi.java
 │   ├───invers.java
-│   ├───main.java
 │   ├───main.java
 │   ├───operator.java
 │   ├───operatormultiplelinreg.java
@@ -70,7 +68,7 @@ Memperbesar resolusi gambar dengan memanfaatkan Interpolasi Bicubic Spline.
 2. Buka folder "Algeo01-22137" di terminal lalu jalankan:
    ```sh
    cd src
-   javac -d ../bin Main.java
+   javac -d ../bin main.java
    cd../bin
    java main
    ```
