@@ -39,7 +39,8 @@ public class main {
                     System.setOut(output); // set stream ke output
                     System.out.println("Sistem Persamaan Linear");
                     if (operator.isNoSolution(matrix)){
-                        System.out.println("matrix tidak memiliki solusi");
+                        System.out.println("Karena matriks eselon, seperti di atas");
+                        System.out.println("Maka matrix tidak memiliki solusi");
                     }else if (operator.isSolutionParametric(matrix)){
                         System.out.println("Oleh karena itu, matrix memiliki solusi parametrik atau solusi tak berhingga ");
                     }else{

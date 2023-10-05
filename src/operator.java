@@ -121,54 +121,123 @@ public class operator {
         }
         return newmatrixx;
     }
-    
-
+    public static boolean isColZero(double[][] m1, int i){
+        for (int j=0;j<m1.length; j++){
+            if (m1[j][i] !=0){
+                return false;
+            }
+        }
+        return true;
+    }
+    public static double[][] delLastRow(double[][] m, int n){ // delete last row n times
+        double[][] m1 = new double[m.length-n][m[0].length];
+        for (int i=0;i<m1.length;i++){
+            for (int j=0; j<m1[0].length;j++){
+                m1[i][j] = m[i][j];
+            }
+        }
+        return m1;
+    }
+    public static double[][] insertLastRow(double[][] m,int n){
+        double[][] m1 = new double[m.length+n][m[0].length];
+        for (int i=0;i<m.length;i++){
+            for (int j=0; j<m1[0].length;j++){
+                m1[i][j] = m[i][j];
+            }
+        }
+        return m1;
+    }
+    public static double[][] insertColLeft(double[][] m, double[][] insM){
+        double[][] m1 = new double[m.length][m[0].length+insM[0].length];
+        for (int i=0;i<insM[0].length;i++){
+            for (int j=0;j<m1.length;j++){
+                m1[j][i] = insM[j][i];
+            }
+        }
+        for (int i=insM[0].length;i<m1[0].length;i++){
+            for (int j=0;j<m1.length;j++){
+                m1[j][i] = m[j][i-insM[0].length];
+            }
+        }
+        return m1;
+    }
+        public static boolean isRowZero(double[][] m, int row){
+        int col = m[0].length;
+        for (int i=0;i<col;i++){
+            if (m[row][i]!=0){
+                return false;
+            }
+        }
+        return true;
+    }
     public static double[][] echelonRow(double[][] m){ // ubah matriks ke matriks eselon baris
-
-        while (!isBelowDiagonalZero(m)){
-            for (int i = 1; i < m.length; i++){
-                if (leftZero(m, i) != i){
-                    substractRowByFactor(m, leftZero(m, i), i, leftZero(m, i));
+        double[][] zero = new double[m.length][1];
+        double[][] m1 = copyMatrix(m);
+        int colZer = 0;
+        while (leftZero(m1, 0)!=0){
+            m1 = delColAt(m1, 0);
+            colZer += 1;
+        }
+        while (!isBelowDiagonalZero(m1)){
+            for (int i = 1; i < m1.length; i++){
+                if (leftZero(m1, i) < i){
+                    substractRowByFactor(m1, leftZero(m1, i), i, leftZero(m1, i));
                 }
             }
-            for (int i = 1; i < m.length - 1; i++){
+            for (int i = 1; i < m1.length - 1; i++){
                 int switchRowIdx = i;
-                for (int j = i+1; j < m.length; j++){
-                    if (leftZero(m, i) > leftZero(m, j)){
+                for (int j = i+1; j < m1.length; j++){
+                    if (leftZero(m1, i) > leftZero(m1, j)){
                         switchRowIdx = j;
                     }
                 }
                 if(switchRowIdx != i){
-                    switchRow(m, i, switchRowIdx);
+                    switchRow(m1, i, switchRowIdx);
                 }
             }
         }
         int leftZeroId;
-        for (int i=0;i<m.length;i++){
-            leftZeroId = leftZero(m, i);
-            if (leftZeroId!=m[0].length){
-                if (m[i][leftZeroId]!=1){
-                double  leftzero = m[i][leftZeroId];
-                for (int j =leftZeroId;j<m[0].length;j++){
-                    m[i][j] = m[i][j]/leftzero;
+        for (int i=0;i<m1.length;i++){
+            leftZeroId = leftZero(m1, i);
+            if (leftZeroId!=m1[0].length){
+                if (m1[i][leftZeroId]!=1){
+                    double  leftzero = m1[i][leftZeroId];
+                    for (int j =leftZeroId;j<m1[0].length;j++){
+                        m1[i][j] = m1[i][j]/leftzero;
+                    }
                 }
             }
-            }
         }
-        return m;
+        for (int i=0;i<colZer;i++){
+            m1 = insertColLeft(m1, zero);
+        }
+        return m1;
     }
 
-    public static double[][] echelonRowReduction(double[][] m){ //ubah matriks ke matriks eselon baris tereduksi
-        m = echelonRow(m);
-        int row = m.length;
+    public static double[][] echelonRowReduction(double[][] m1){ //ubah matriks ke matriks eselon baris tereduksi
+        m1 = echelonRow(m1);
+        int row = m1.length;
         int leftZeroId;
         for (int i=0;i<row;i++){
-            leftZeroId = leftZero(m, i);
-            for (int j=0;j<i;j++){
-                substractRowByFactor(m, i, j, leftZeroId);
+            if (!isRowZero(m1, i)){
+                leftZeroId = leftZero(m1, i);
+                for (int j=0;j<i;j++){
+                    substractRowByFactor(m1, i, j, leftZeroId);
+                }
             }
         }
-        return m;
+         for (int i = 1; i < m1.length - 1; i++){
+                int switchRowIdx = i;
+                for (int j = i+1; j < m1.length; j++){
+                    if (leftZero(m1, i) > leftZero(m1, j)){
+                        switchRowIdx = j;
+                    }
+                }
+                if(switchRowIdx != i){
+                    switchRow(m1, i, switchRowIdx);
+                }
+            }
+        return m1;
     }
     public static double[][] swapCol(double[][] mat1, double[][] rowMat, int idX){ // menukar kolom matriks
         double[][] cMat = copyMatrix(mat1);
@@ -179,25 +248,25 @@ public class operator {
         return cMat;
     }
 
-    public static double[][] copyMatrix(double[][] m){ 
+    public static double[][] copyMatrix(double[][] m1){ 
         /*
         -------- SPESIFIKASI -------- 
-        Menghasilkan salinan matrix m
+        Menghasilkan salinan matrix m1
         -------- KAMUS LOKAL --------
         i, j : integer
-        copy : matrix [0..m.rowEff-1][0..m.colEff-1] of double
+        copy : matrix [0..m1.rowEff-1][0..m1.colEff-1] of double
         -------- REALISASI --------
         */
-        double[][] temp = new double[m.length][m[0].length];
-        for (int i = 0; i < m.length; i++){
-            for (int j = 0; j < m[0].length; j++){
-                temp[i][j] = m[i][j];
+        double[][] temp = new double[m1.length][m1[0].length];
+        for (int i = 0; i < m1.length; i++){
+            for (int j = 0; j < m1[0].length; j++){
+                temp[i][j] = m1[i][j];
             }
         }
         return temp;
     }
 
-    public static int leftZero(double[][] m, int row){
+    public static int leftZero(double[][] m1, int row){
         /*
         -------- SPESIFIKASI -------- 
         Menghitung jumlah angka 0 yang berada di sebelah kiri sebelum ada elemen non-nol
@@ -207,8 +276,8 @@ public class operator {
         */
         int i = 0;
         int count = 0;
-        while (i < m[0].length){
-            if (m[row][i] == 0){
+        while (i < m1[0].length){
+            if (m1[row][i] == 0){
                 count += 1;
             } else {
                 return count;
@@ -218,25 +287,25 @@ public class operator {
         return count;
     }
 
-    public static void switchRow(double[][] m, int r1, int r2){
+    public static void switchRow(double[][] m1, int r1, int r2){
         /*
         -------- SPESIFIKASI -------- 
-        I.S. : matrix m terdefinisi
-        F.S. : baris R1 dan R2 matrix m ditukar
+        I.S. : matrix m1 terdefinisi
+        F.S. : baris R1 dan R2 matrix m1 ditukar
         -------- KAMUS LOKAL --------
         i : integer
         temp : double
         -------- REALISASI --------
         */        
         double temp;
-        for (int i = 0; i < m[0].length; i++){
-            temp = m[r1][i];
-            m[r1][i] = m[r2][i];
-            m[r2][i] = temp;
+        for (int i = 0; i < m1[0].length; i++){
+            temp = m1[r1][i];
+            m1[r1][i] = m1[r2][i];
+            m1[r2][i] = temp;
         }
     }
 
-    public static boolean isBelowDiagonalZero(double[][] m){
+    public static boolean isBelowDiagonalZero(double[][] m1){
         /*
         -------- SPESIFIKASI -------- 
         Mengecek apakah semua elemen di bawah diagonal utama 0, mengembalikan true jika ya, false jika tidak
@@ -244,9 +313,14 @@ public class operator {
         i, j : integer
         -------- REALISASI --------
         */      
-        for (int i = 1; i < m.length; i++){
+        for (int i = 1; i < m1.length; i++){
             for (int j = 0; j < i; j++){
-                if (m[i][j] != 0){
+                if (m1[i][j] != 0){
+                    return false;
+                }
+            }
+            for (int j = 0; j < leftZero(m1, i); j++){
+                if (m1[i][j] != 0){
                     return false;
                 }
             }
@@ -254,36 +328,36 @@ public class operator {
         return true;
     }
 
-    public static void substractRowByFactor(double[][] m, int r1, int r2, int startCol){
+    public static void substractRowByFactor(double[][] m1, int r1, int r2, int startCol){
         /*
         -------- SPESIFIKASI -------- 
-        I.S. : matrix m terdefinisi
-        F.S. : baris r2 matrix m berkurang dengan rumus r2 = r2 - factor * r1 mulai kolom startCol
+        I.S. : matrix m1 terdefinisi
+        F.S. : baris r2 matrix m1 berkurang dengan rumus r2 = r2 - factor * r1 mulai kolom startCol
         -------- KAMUS LOKAL --------
         factor : double
         i : integer
         -------- REALISASI --------
         */  
-        double factor = m[r2][startCol] / m[r1][startCol];
-        for (int i = startCol; i < m[0].length; i++){
-            m[r2][i] -= factor * m[r1][i];
+        double factor = m1[r2][startCol] / m1[r1][startCol];
+        for (int i = startCol; i < m1[0].length; i++){
+            m1[r2][i] -= factor * m1[r1][i];
         }
     }
 
-    public static double cofactorExp(double[][] m, int rowExc, int colExc){
+    public static double cofactorExp(double[][] m1, int rowExc, int colExc){
         /*
         -------- SPESIFIKASI -------- 
         Menghasilkan kofaktor baris rowExc dan kolom colExc untuk fungsi detCofactorExp
         -------- KAMUS LOKAL --------
         i, j, row, col : integer
-        cof : matrix [0..m.rowEff-1][0..m.colEff-1] of double 
+        cof : matrix [0..m1.rowEff-1][0..m1.colEff-1] of double 
         det : double
         -------- REALISASI --------
         */  
-        double[][] cof = new double[m.length - 1][m[0].length - 1];
-        for (int i = 0; i < m.length; i++){
-            // Looping untuk mengisi matrix cof dari matrix m tanpa elemen-elemen pada baris rowExc dan kolom colExc
-            for (int j = 0; j < m[0].length; j++){
+        double[][] cof = new double[m1.length - 1][m1[0].length - 1];
+        for (int i = 0; i < m1.length; i++){
+            // Looping untuk mengisi matrix cof dari matrix m1 tanpa elemen-elemen pada baris rowExc dan kolom colExc
+            for (int j = 0; j < m1[0].length; j++){
                 if ((i != rowExc) && (j != colExc)){
                     int row = i;
                     int col = j;
@@ -293,7 +367,7 @@ public class operator {
                     if (j > colExc){
                         col -= 1;
                     }
-                    cof[row][col] = m[i][j];
+                    cof[row][col] = m1[i][j];
                 }
             }
         }
@@ -305,20 +379,20 @@ public class operator {
         return det;
     }
 
-    public static double cofactorComb(double[][] m, int rowExc, int colExc){
+    public static double cofactorComb(double[][] m1, int rowExc, int colExc){
         /*
         -------- SPESIFIKASI -------- 
         Menghasilkan kofaktor baris rowExc dan kolom colExc untuk fungsi detCombination
         -------- KAMUS LOKAL --------
         i, j, row, col : integer
-        cof : matrix [0..m.rowEff-1][0..m.colEff-1] of double 
+        cof : matrix [0..m1.rowEff-1][0..m1.colEff-1] of double 
         det : double
         -------- REALISASI --------
         */  
-        double[][] cof = new double[m.length - 1][m[0].length - 1];
-        for (int i = 0; i < m.length; i++){
-            // Looping untuk mengisi matrix cof dari matrix m tanpa elemen-elemen pada baris rowExc dan kolom colExc
-            for (int j = 0; j < m[0].length; j++){
+        double[][] cof = new double[m1.length - 1][m1[0].length - 1];
+        for (int i = 0; i < m1.length; i++){
+            // Looping untuk mengisi matrix cof dari matrix m1 tanpa elemen-elemen pada baris rowExc dan kolom colExc
+            for (int j = 0; j < m1[0].length; j++){
                 if ((i != rowExc) && (j != colExc)){
                     int row = i;
                     int col = j;
@@ -328,7 +402,7 @@ public class operator {
                     if (j > colExc){
                         col -= 1;
                     }
-                    cof[row][col] = m[i][j];
+                    cof[row][col] = m1[i][j];
                 }
             }
         }
@@ -342,11 +416,11 @@ public class operator {
 
 
     // public static void main(String[] args){
-    //     double[][] m = {{1,1,1,6,2},
+    //     double[][] m1 = {{1,1,1,6,2},
     //                     {1,2,3,14,4},
     //                     {2,3,2,14,5}};
-    //     m = echelonRowReduction(m);
-    //     displayMatrix((m));
+    //     m1 = echelonRowReduction(m1);
+    //     displayMatrix((m1));
     // }
 
     // public static void displayMatrix(double[][] matrix){
@@ -397,23 +471,25 @@ public class operator {
     }
     public static boolean isNoSolution(double[][] mat){ // matriks gada solusi
         double[][] echelonRow_mat = echelonRow(mat);
-        int row = mat.length;
-        int col = mat[0].length;
+        int row = echelonRow_mat.length;
+        int col = echelonRow_mat[0].length;
         if (echelonRow_mat[row-1][col-1]!=0){
             for (int i=0;i<col-1;i++){
                 if (echelonRow_mat[row-1][i]!=0){
                     return false;
                 }
             }
+            displayMatrix(echelonRow_mat);
             return true;
         }else{
             return false;
         }
     }
+
     public static boolean isSolutionParametric(double[][] mat){ // solusi parametrik
-        double[][] echelonRow_mat = echelonRow(mat);
+        double[][] echelonRow_mat = echelonRowReduction(mat);
         int row = mat.length;
-        int col = mat[0].length;
+        int col = echelonRow_mat[0].length;
         boolean flag = false; // sebagai penanda 
         int n = 0; // jumlah baris dimana hanya berisi 0 tiap kolom
         int j = row-1;
@@ -431,58 +507,47 @@ public class operator {
                 flag = true;
             }
             j-=1;
-        }     
-        int row_not_one = 0;
-        for (int i=0;i<echelonRow_mat.length;i++){
-            if (echelonRow_mat[i][i]==0 && echelonRow_mat[i][col-1]!=0){
-                row_not_one += 1;
-            }
+        } 
+        echelonRow_mat = delLastRow(echelonRow_mat, n);
+        row = echelonRow_mat.length;
+        int[] arr_is_par = new int[row];
+        int[] arr_isnot_par = new int[col-row-1];
+        double[][] solusi = new double[row][col-row];
+        for (int i=0;i<row;i++){
+            arr_is_par[i] = leftZero(echelonRow_mat, i);
         }
-        int id = 0;
-        int[] arr_not_one = new int[row_not_one];
-        for (int i=0;i<echelonRow_mat.length;i++){
-            if (echelonRow_mat[i][i]==0 && echelonRow_mat[i][col-1]!=0){
-                arr_not_one[id] = i;
-                id +=1;
+        int col_not_par = 0;
+        int id_np = 0;
+        while (col_not_par<col-1){
+            if (!(isIn(col_not_par,arr_is_par))){
+                arr_isnot_par[id_np] = col_not_par;
+                id_np += 1;
             }
+            col_not_par+=1;
         }
-        double[][] solusi = new double[row][(col-row-1)+1+n+row_not_one];
-        for (int a=row-1;a>=0;a--){
-            if (!(isIn(a, arr_not_one))){
-                double sum = 0;
-                int x = 0;
-                for (int b=n+(col-row-1);b>0;b--){ //hitung solusi parametrik
-                        solusi[a][b+row_not_one] -= echelonRow_mat[a][col-2-x];
-                        x += 1;
-                }
-
-                for (int b=col-2-(col-row-1+n);b>a;b--){ //col-2 -> col-2-n; c = n->0; col - (row+1)+n
-                    for (int c = n+(col-row-1);c>0;c--){
-                        if (a!=row-1){
-                            solusi[a][c] -= (echelonRow_mat[a][b]*solusi[b][c]);
+        for (int i=echelonRow_mat.length-1;i>=0;i--){
+            int leftZeroId = leftZero(echelonRow_mat, i);
+            for (int k = leftZeroId;k<col;k++){
+                if (k==col-1){
+                    solusi[i][0] = echelonRow_mat[i][k];
+                }else{
+                    if (isIn(k, arr_isnot_par)){
+                        int l = 0;
+                        while (arr_isnot_par[l]!=k){
+                            l += 1;
                         }
-                    }
-                    if (isIn(b, arr_not_one)){
-                        System.out.println("ada");
-                        id = 0;
-                        int i=0;
-                        while(arr_not_one[i]!=b){
-                            id +=1;
-                            i +=i;
-                        }
-                        id +=1;
-                        solusi[a][id] -= echelonRow_mat[a][b];
-                    }else{
-                        sum += echelonRow_mat[a][b]*solusi[b][0];
+                        solusi[i][l+1] -= echelonRow_mat[i][k];
                     }
                 }
-                solusi[a][0]= echelonRow_mat[a][col-1]-sum;
             }
-
         }
-        if (row-n<col-1+row_not_one){ // menentukan jenis solusi
+        
+        if (row<col-1){ // menentukan jenis solusi
+            System.out.println("Matriks: ");
+            echelonRow_mat = insertLastRow(echelonRow_mat, n);
+            row += n;
+            displayMatrix(echelonRow_mat);
             if (n>0){
-                displayMatrix(echelonRow_mat);
                 for (int i=0;i<n;i++){
                     System.out.println("baris matrix eselon baris ke-"+(row-i)+" bernilai 0 semua");
                 }
@@ -491,25 +556,17 @@ public class operator {
                 
             }
             System.out.println("Solusi menjadi: ");
-            for (int i=0;i<row-n;i++){
-                if (!(isIn(i, arr_not_one))){
-                    System.out.print("X"+(i+1)+": "+solusi[i][0]+" ");
-                    for (int k=1;k<row_not_one+1;k++){
-                        if (solusi[i][k]>0){
-                            System.out.print("+"+solusi[i][k]+"X"+(arr_not_one[k-1]+1)+" ");    
+            row -= n;
+            for (int i =0;i<arr_is_par.length;i++){
+                System.out.print("X"+(arr_is_par[i]+1)+": "+solusi[i][0]+" ");
+                for (int k = 1;k<solusi[0].length;k++){
+                    if (solusi[i][k]>0){
+                            System.out.print("+"+solusi[i][k]+"X"+(arr_isnot_par[k-1]+1)+" ");   
                         }else if (solusi[i][k]<0){
-                            System.out.print(solusi[i][k]+"X"+(arr_not_one[k-1]+1)+" ");
+                            System.out.print(+solusi[i][k]+"X"+(arr_isnot_par[k-1]+1)+" ");
                         }
                     }
-                    for (int k =1+row_not_one;k<(col-row-1)+n+1+row_not_one;k++){
-                        if (solusi[i][k]>0){
-                            System.out.print("+"+solusi[i][k]+"X"+(row+k-row_not_one-n)+" ");    
-                        }else if (solusi[i][k]<0){
-                            System.out.print(solusi[i][k]+"X"+(row+k-row_not_one-n)+" ");
-                        }
-                }
                 System.out.println();
-                }
             }
 
             return true;
