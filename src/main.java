@@ -1,5 +1,8 @@
 import java.util.*;
 import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 public class main {
     public static void main(String[] args){
@@ -11,15 +14,16 @@ public class main {
             System.setOut(console);// set stream ke console
             Scanner in = new Scanner (System.in);
             while (true){
-                System.out.println("MENU");
+                System.out.println("\nMENU");
                 System.out.println("1. Sistem Persamaan Linier");
                 System.out.println("2. Determinan");
                 System.out.println("3. Matriks balikan");
                 System.out.println("4. Interpolasi Polinom");
                 System.out.println("5. Interpolasi Bicubic Spline");
                 System.out.println("6. Regresi linier berganda");
-                System.out.println("7. Keluar");
-                System.out.println("Silakan pilih menu (1-7): ");
+                System.out.println("7. Perbesaran gambar");
+                System.out.println("8. Keluar");
+                System.out.println("Silakan pilih menu (1-8): ");
                 int opt = in.nextInt();
                 if (opt == 1){
                     System.out.println("Silakan pilih metode yang ingin digunakan untuk menyelesaikan SPL: ");
@@ -104,15 +108,22 @@ public class main {
                     int back = in.nextInt();
                         
                 } else if (opt == 3){
-                    System.out.println("Silakan pilih metode yang ingin digunakan: ");
-                    System.out.println("1. Menggunakan matriks identitas");
-                    System.out.println("2. Metode adjoin");
-                    System.out.println("Silakan pilih menu (1-2): ");
-                    int opt3 = in.nextInt();
-                    System.out.println("Progres belum sejauh itu."); 
 
-                    System.out.println("Ketik 1 dan [enter] untuk kembali ke Menu Utama.");
-                    int back = in.nextInt();
+                    System.out.println("\n[Menu Matriks Balikan] ");
+
+                    System.out.println("\n1. Menggunakan matriks identitas (OBE)");
+                    System.out.println("2. Menggunakan matriks adjoin");
+
+                    System.out.print("\nPilih metode (1/2): ");
+                    int opt3 = in.nextInt();
+
+                    if (opt3 == 1){
+                        int x = invers.runIdentity();
+                    } else if (opt3 == 2){
+                        int x = invers.runAdjoint();
+                    } else {
+                        System.out.println("Input tidak Valid."); 
+                    }
 
                 } else if (opt == 4){
 
@@ -197,8 +208,13 @@ public class main {
 
                     System.out.println("Ketik 1 dan [enter] untuk kembali ke Menu Utama.");
                     int back = in.nextInt();
-
-                } else if (opt == 7){
+                
+                } 
+                else if (opt == 7){
+                    int x = imageProcessing.run();
+                }
+                
+                else if (opt == 8){
                     File delfile = new File("out/output.txt");
                     System.out.println("Apakah output ingin disimpan?");
                     System.out.println("1. Iya ");

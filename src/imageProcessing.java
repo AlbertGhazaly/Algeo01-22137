@@ -2,6 +2,10 @@ import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.Scanner;
 
 public class imageProcessing {
 
@@ -219,21 +223,57 @@ public class imageProcessing {
 
         return newImageMatrix;
     }
-    public static void main(String[] args) {
-        String imagePath = "image/suisei4x4.png"; // Input image path
-        String outputPath = "image/suisei4x4Resized.jpg";     // Output image path
 
-        int[][] pixelArray = imageToArray(imagePath);
+    public static int run(){
 
-        if (pixelArray != null) {
-            // operator.displayMatrixInt(pixelArray);
-            int[][] newImg = resize(pixelArray, 16);
+        Scanner scanner = new Scanner(System.in);
 
-            arrayToImage(newImg, outputPath);
+        System.out.print("\nMasukkan nama file input: ");
+        String inputPath = scanner.nextLine();
+        inputPath = "image\\" + inputPath;
+
+        Path image = Paths.get(inputPath);
+
+        if (!Files.exists(image)) {
+            System.out.println("\nFile tidak tersedia.");
+            
+        } else {
+
+            String imagePath = inputPath; // Input image path
+
+            System.out.print("Masukkan nama file output: ");
+
+            String outputPath = scanner.nextLine();
+            outputPath = "image/" + outputPath;     // Output image path
+
+            int[][] pixelArray = imageToArray(imagePath);
+
+            if (pixelArray != null) {
+
+                System.out.print("Masukkan perbesaran gambar: ");
+                String str = scanner.nextLine();
+
+                try {
+                double scale = Double.parseDouble(str);
+
+                int[][] newImg = resize(pixelArray, scale);
+                arrayToImage(newImg, outputPath);
+
+                System.out.println("\nBerhasil melakukan perbesaran gambar!");
+                
+                } catch (NumberFormatException e) {
+
+                System.out.println("\nInput skala tidak valid.");
+                System.out.println("Gagal melakukan perbesaran gambar.");
+                }
+
+            } else {
+                System.out.print("Gagal melakukan perbesaran gambar.");
+            }
         }
-    
-        get_D_MATRIX();
-    }
+        System.out.println("\nSilakan tekan ENTER untuk kembali.");
+        String BACK = scanner.nextLine();
+
+    return 0;
+    } 
 }
-
-

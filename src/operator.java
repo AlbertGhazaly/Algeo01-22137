@@ -4,20 +4,25 @@ import java.io.*;
 public class operator {
     public static double[][] inputMatrix(){
         Scanner in = new Scanner (System.in);
+
+        System.out.println("\n-Dimensi Matriks-");
         System.out.print("Masukkan jumlah baris: ");
         int row = in.nextInt();
-        System.out.print("Masukkan jumlah Kolom: ");
+        System.out.print("Masukkan jumlah kolom: ");
         int col = in.nextInt();
-        System.out.println("Pilih cara input matrix: ");
-        System.out.println("1. File ");
-        System.out.println("2. CLI");
+
+        System.out.println("\n-Metode Input Matriks-");
+        System.out.println("1. File .txt ");
+        System.out.println("2. Command line ");
+        System.out.print("\nPilih metode (1/2): ");
+    
         int opt2 = in.nextInt();
         while (opt2<=0 && opt2>2){
             System.out.print("Opsi tidak sesuai, silahkan input kembali: ");
             opt2 = in.nextInt();
         }
         if (opt2==2){
-            System.out.println("Masukkan nilai matrix: ");
+            System.out.println("\nInput matriks: ");
             double[][] mat = new double[row][col];
             for (int i=0;i<row;i++){
                 for (int j=0;j<col;j++){
@@ -29,7 +34,7 @@ public class operator {
             try{
                 Scanner scan = new Scanner (System.in);
                 double[][] mat = new double[row][col];
-                System.out.println("Masukkan path file yang ingin dibaca: ");
+                System.out.println("\nMasukkan path file yang ingin dibaca: ");
                 System.out.print("PATH: ");
                 File myFile = new File(scan.nextLine());
                 Scanner Reader = new Scanner(myFile);
@@ -45,9 +50,9 @@ public class operator {
                 Reader.close();
                 return mat;
             }catch (FileNotFoundException e) {
-                System.out.println("ERROR, can't read FILE");
+                System.out.println("\nERROR, can't read FILE");
                 System.out.println("Membaca matrix terpaksa melalui CLI");
-                System.out.println("Masukkan nilai matrix: ");
+                System.out.println("\nInput matriks: ");
                 double[][] mat = new double[row][col];
                 for (int i=0;i<row;i++){
                     for (int j=0;j<col;j++){
@@ -413,7 +418,12 @@ public class operator {
     }
     public static boolean isSolutionParametric(double[][] mat){
         double[][] echelonRow_mat = echelonRow(mat);
-        int row = mat.length;
+        int row =0;
+        for (int i=0;i<mat.length;i++){
+            if (echelonRow_mat[i][i]==1){
+                row +=1;
+            }
+        }
         int col = mat[0].length;
         boolean flag = false; // sebagai penanda 
         int n = 0; // jumlah baris dimana hanya berisi 0 tiap kolom
