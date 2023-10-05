@@ -161,9 +161,9 @@ public class main {
                     int back = in.nextInt();
 
                 } else if (opt == 5){
+                    
+                    int x = bicubic.runBicubic();
 
-                    System.out.println("Ketik 1 dan [enter] untuk kembali ke Menu Utama.");
-                    int back = in.nextInt();
 
                 } else if (opt == 6){
                     System.out.println("Masukkan banyaknya peubah x: ");
@@ -211,6 +211,8 @@ public class main {
                 
                 } 
                 else if (opt == 7){
+
+                    System.out.println("\n[Menu Perbesaran Resolusi Gambar] ");
                     int x = imageProcessing.run();
                 }
                 

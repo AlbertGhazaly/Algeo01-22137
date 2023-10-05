@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 public class bicubic {
 
     private static double power(double base, int power){
@@ -100,6 +102,52 @@ public class bicubic {
         }
 
         return VAL;
+    }
+
+    public static int runBicubic(){
+
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("\n[Menu Interpolasi Bicubic Spline]");
+        
+        double[][] inputMatriks = operator.inputMatrix();
+
+        if ((inputMatriks.length != 4) || (inputMatriks[0].length != 4)){
+            System.out.println("\nMatriks referensi tidak sesuai, harus 4x4!");
+
+        } else {
+
+            double[][] BSI_MATRIX = get_BSI_MATRIX();
+            double[][] BSI_COEF = get_BSI_COEF(inputMatriks, BSI_MATRIX); 
+
+            String Continue = "Y";
+
+            while (Continue.equalsIgnoreCase("y")){
+
+                System.out.println("\nInput titik <x,y>:");
+
+                System.out.print("X: ");
+                double X = scanner.nextDouble();
+
+                System.out.print("Y: ");
+                double Y = scanner.nextDouble();
+
+                double FuncVal = get_BSI_VAL(BSI_COEF, Y, X);
+                scanner.nextLine();
+
+                System.out.println("f<" + X + "," + Y + "> = " + FuncVal);
+
+                System.out.print("\nApakah ingin melanjutkan input f<x,y> (Y/N): ");
+
+                Continue = scanner.nextLine();
+            }
+        }
+
+        System.out.println("\nSilakan tekan ENTER untuk kembali.");
+        String BACK = scanner.nextLine();
+
+
+        
+        return 0;
     }
     
     // public static void main(String[] args){
