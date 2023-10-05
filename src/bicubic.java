@@ -188,7 +188,7 @@ public class bicubic {
             } else {
 
                 double FuncVal = get_BSI_VAL(BSI_COEF, Y, X);
-                System.out.println("f<" + X + "," + Y + "> = " + FuncVal);
+                System.out.println("\nf<" + X + "," + Y + "> = " + FuncVal);
 
             }
         }

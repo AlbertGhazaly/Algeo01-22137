@@ -292,7 +292,7 @@ public class imageProcessing {
                 double scale = Double.parseDouble(str);
 
                 int[][] newImg = resize(pixelArray, scale);
-                arrayToImage(newImg, outputPath);
+                arrayToImage(newImg, outputPath);   
 
                 System.out.println("\nBerhasil melakukan perbesaran gambar!");
                 

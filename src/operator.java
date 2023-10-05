@@ -67,10 +67,10 @@ public class operator {
         Scanner in = new Scanner (System.in);
 
         System.out.println("\n-Dimensi Matriks-");
-        System.out.print("Masukkan jumlah baris: ");
-        int row = in.nextInt();
-        System.out.print("Masukkan jumlah kolom: ");
-        int col = in.nextInt();
+        System.out.println("Baris: 4");
+        int row = 4;
+        System.out.println("Kolom: 4");
+        int col = 4;
 
         System.out.println("\n-Metode Input Matriks-");
         System.out.println("1. File .txt ");
