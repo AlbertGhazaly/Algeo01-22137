@@ -41,8 +41,6 @@ public class operator {
                     
                     i++;
                 }
-                scan.close();
-                Reader.close();
                 return mat;
             }catch (FileNotFoundException e) {
                 System.out.println("ERROR, can't read FILE");
@@ -171,6 +169,10 @@ public class operator {
         return true;
     }
     public static double[][] echelonRow(double[][] m){ // ubah matriks ke matriks eselon baris
+        if (m.length>=m[0].length){
+            int sel = m.length - m[0].length + 1;
+            m = delLastRow(m, sel);
+        }
         double[][] zero = new double[m.length][1];
         double[][] m1 = copyMatrix(m);
         int colZer = 0;
@@ -180,7 +182,7 @@ public class operator {
         }
         while (!isBelowDiagonalZero(m1)){
             for (int i = 1; i < m1.length; i++){
-                if (leftZero(m1, i) < i){
+                if (leftZero(m1, i) < i){ // 011 lz =2 
                     substractRowByFactor(m1, leftZero(m1, i), i, leftZero(m1, i));
                 }
             }
@@ -276,12 +278,8 @@ public class operator {
         */
         int i = 0;
         int count = 0;
-        while (i < m1[0].length){
-            if (m1[row][i] == 0){
-                count += 1;
-            } else {
-                return count;
-            }
+        while (i < m1[0].length && m1[row][i]==0){
+            count += 1;
             i += 1;
         }
         return count;
@@ -314,14 +312,16 @@ public class operator {
         -------- REALISASI --------
         */      
         for (int i = 1; i < m1.length; i++){
-            for (int j = 0; j < i; j++){
-                if (m1[i][j] != 0){
-                    return false;
+            if (!isRowZero(m1, i)){
+                for (int j = 0; j < i; j++){
+                    if (m1[i][j] != 0){
+                        return false;
+                    }
                 }
-            }
-            for (int j = 0; j < leftZero(m1, i); j++){
-                if (m1[i][j] != 0){
-                    return false;
+                for (int j = 0; j < leftZero(m1, i); j++){
+                    if (m1[i][j] != 0){
+                        return false;
+                    }
                 }
             }
         }
@@ -488,12 +488,12 @@ public class operator {
 
     public static boolean isSolutionParametric(double[][] mat){ // solusi parametrik
         double[][] echelonRow_mat = echelonRowReduction(mat);
-        int row = mat.length;
+        int row = echelonRow_mat.length;
         int col = echelonRow_mat[0].length;
         boolean flag = false; // sebagai penanda 
         int n = 0; // jumlah baris dimana hanya berisi 0 tiap kolom
         int j = row-1;
-        while (!flag){ // menghitung jumlah n
+        while (!flag && j>=0){ // menghitung jumlah n
             if (echelonRow_mat[j][col-1]==0 ){
                 for (int i=0;i<col-1;i++){
                     if (echelonRow_mat[j][i]!=0){
