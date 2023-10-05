@@ -63,6 +63,75 @@ public class operator {
             }
         }
     }
+
+    public static double[][][] inputMatrixBicubic(){ //menerima nilai matrix -> matriks
+
+        Scanner in = new Scanner (System.in);
+
+        System.out.println("\n-Dimensi Matriks-");
+        System.out.print("Masukkan jumlah baris: ");
+        int row = in.nextInt();
+        System.out.print("Masukkan jumlah kolom: ");
+        int col = in.nextInt();
+
+        System.out.println("\n-Metode Input Matriks-");
+        System.out.println("1. File .txt ");
+        System.out.println("2. Command line ");
+        System.out.print("\nPilih metode (1/2): ");
+    
+        int opt2 = in.nextInt();
+        while (opt2<=0 && opt2>2){
+            System.out.print("Opsi tidak sesuai, silahkan input kembali: ");
+            opt2 = in.nextInt();
+        }
+        if (opt2==2){
+            System.out.println("\nInput matriks: ");
+            double[][] mat = new double[row][col];
+
+            for (int i=0;i<row;i++){
+                for (int j=0;j<col;j++){
+                    mat[i][j] = in.nextDouble();
+                }
+            }
+
+            double[][][] output = {mat, {{0},{0},{0}}};
+            return output;
+        }else{
+            try{
+                Scanner scan = new Scanner (System.in);
+                double[][] mat = new double[row][col];
+                System.out.println("\nMasukkan path file yang ingin dibaca: ");
+                System.out.print("PATH: ");
+                File myFile = new File(scan.nextLine());
+                Scanner Reader = new Scanner(myFile);
+                int i = 0;
+                while (Reader.hasNextLine()&&i<row) {
+                    for (int j=0;j<col;j++){
+                        mat[i][j] = Reader.nextDouble();
+                    }
+                    
+                    i++;
+                }
+
+                double[][][] output = {mat,{{Reader.nextDouble()},{Reader.nextDouble()},{1}}};
+
+                return output;
+            }catch (FileNotFoundException e) {
+                System.out.println("\nERROR, can't read FILE");
+                System.out.println("Membaca matrix terpaksa melalui CLI");
+                System.out.println("\nInput matriks: ");
+                double[][] mat = new double[row][col];
+                for (int i=0;i<row;i++){
+                    for (int j=0;j<col;j++){
+                        mat[i][j] = in.nextDouble();
+                    }
+                }
+                double[][][] output = {mat, {{0},{0},{0}}};
+                return output;
+            }
+        }
+    }
+
     public static void displayMatrix(double[][] mat){ //tampilin matriks
         int row = mat.length;
         int col = mat[0].length;

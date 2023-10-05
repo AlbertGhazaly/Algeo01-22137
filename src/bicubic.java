@@ -146,7 +146,12 @@ public class bicubic {
         Scanner scanner = new Scanner(System.in);
         System.out.println("\n[Menu Interpolasi Bicubic Spline]");
         
-        double[][] inputMatriks = operator.inputMatrix();
+        double[][][] get_inputMatriks = operator.inputMatrixBicubic();
+
+        double[][] inputMatriks = get_inputMatriks[0];
+        double typeInput = get_inputMatriks[1][2][0];
+        double X = get_inputMatriks[1][1][0];
+        double Y = get_inputMatriks[1][0][0];
 
         if ((inputMatriks.length != 4) || (inputMatriks[0].length != 4)){
             System.out.println("\nMatriks referensi tidak sesuai, harus 4x4!");
@@ -156,26 +161,35 @@ public class bicubic {
             double[][] BSI_MATRIX = get_BSI_MATRIX();
             double[][] BSI_COEF = get_BSI_COEF(inputMatriks, BSI_MATRIX); 
 
-            String Continue = "Y";
+            if (typeInput == 0){
 
-            while (Continue.equalsIgnoreCase("y")){
+                String Continue = "Y";
 
-                System.out.println("\nInput titik <x,y>:");
+                while (Continue.equalsIgnoreCase("y")){
 
-                System.out.print("X: ");
-                double X = scanner.nextDouble();
+                    System.out.println("\nInput titik <x,y>:");
 
-                System.out.print("Y: ");
-                double Y = scanner.nextDouble();
+                    System.out.print("X: ");
+                    X = scanner.nextDouble();
+
+                    System.out.print("Y: ");
+                    Y = scanner.nextDouble();
+
+                    double FuncVal = get_BSI_VAL(BSI_COEF, Y, X);
+                    scanner.nextLine();
+
+                    System.out.println("f<" + X + "," + Y + "> = " + FuncVal);
+
+                    System.out.print("\nApakah ingin melanjutkan input f<x,y> (Y/N): ");
+
+                    Continue = scanner.nextLine();
+                }
+
+            } else {
 
                 double FuncVal = get_BSI_VAL(BSI_COEF, Y, X);
-                scanner.nextLine();
-
                 System.out.println("f<" + X + "," + Y + "> = " + FuncVal);
 
-                System.out.print("\nApakah ingin melanjutkan input f<x,y> (Y/N): ");
-
-                Continue = scanner.nextLine();
             }
         }
 
