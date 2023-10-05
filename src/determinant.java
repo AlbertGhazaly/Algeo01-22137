@@ -98,7 +98,9 @@ public class determinant{
             // Jika tidak, reduksi baris lalu kalikan dengan determinan kofaktor
             for (int i = 1; i < m.length; i++){
                 // Looping untuk 'mengurangi' baris pada kolom 1
-                operator.substractRowByFactor(m, 0, i, 0);
+                if (m[0][0] != 0){
+                    operator.substractRowByFactor(m, 0, i, 0);
+                }
             }
             double cof = operator.cofactorComb(m, 0, 0);
             double det = m[0][0] * cof; // Mengalikan elemen baris 0 kolom 0 dengan kofaktor
