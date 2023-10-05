@@ -1,7 +1,0 @@
-Interpolasi 
-Solusi hasil perhitungan interpolasi: 
-f(x): 2.0 +1.0X^1 
-Masukkan nilai x
-1
-2
-Hasil: 12.0

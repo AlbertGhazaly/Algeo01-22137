@@ -151,10 +151,10 @@ public class main {
                     System.out.println();
                     System.out.println("Masukkan nilai x");
                     n -=1;
-                    int der = in.nextInt();
+                    double der = in.nextDouble();
                     double suminter = 0;
                     for (int i = 1;i<result.length;i++){
-                        int has = 1;
+                        double has = 1;
                         for (int pan = 0;pan<i;pan++){
                             has = has*der;
                         }
