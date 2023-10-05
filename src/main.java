@@ -158,9 +158,10 @@ public class main {
                         for (int pan = 0;pan<i;pan++){
                             has = has*der;
                         }
-                        suminter += has;
+                        suminter += has*result[i][0];
                     }
-                    System.out.print("Hasil: "+suminter);
+                    suminter += result[0][0];
+                    System.out.println("Hasil: "+suminter);
                     System.setOut(console);
                     System.out.println("Ketik 1 dan [enter] untuk kembali ke Menu Utama.");
                     int back = in.nextInt();
