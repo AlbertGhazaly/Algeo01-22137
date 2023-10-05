@@ -29,17 +29,38 @@ public class main {
                     System.out.println("2. Metode Eliminasi Gauss-Jordan");
                     System.out.println("3. Matriks Balikan");
                     System.out.println("4. Kaidah Cramer");
+                    System.out.println("5. Special case (Matriks Hilbert)");
                     System.out.println("Silakan pilih menu (1-4): ");
                     int opt1 = in.nextInt();
-                    while (opt1<=0 && opt1>4){
+                    while (opt1<=0 && opt1>5){
                         System.out.print("Opsi tidak sesuai, silahkan input kembali: ");
                         opt1 = in.nextInt();
                     }
-                    double[][] matrix = operator.inputMatrix();
-
+                    double[][] matrix;
                     System.setOut(output); // set stream ke output
                     System.out.println("Sistem Persamaan Linear");
-                    spl.SPL(matrix, opt1);
+                    if (opt1==5){
+                            System.out.println("Input nilai n: ");
+                            int n = in.nextInt();
+                            double[][] matriks = new double[n][n+1];
+                            double[][] solusi = new double[n][0];
+                            matriks[0][n] = 1.0;
+                            for (int i=1;i<n;i++){
+                                matriks[i][n] = 0;
+                            }
+                            for (int i=0;i<n;i++){
+                                for (int j=0;j<n;j++){
+                                    matriks[i][j] = (double) 1/((j+1+i));
+                                }
+                            }
+                            solusi = spl.gauss_Jordan_Spl(matriks);
+                            for (int i=0;i<solusi.length;i++){
+                                System.out.println("X"+(i+1)+": "+solusi[i][0]+" ");
+                            }
+                    }else{
+                        matrix = operator.inputMatrix();
+                        spl.SPL(matrix, opt1);
+                    }
                     System.out.println();
                     System.setOut(console); // kembali set stream ke normal (console)
                     System.out.println("Ketik 1 dan [enter] untuk kembali ke Menu Utama.");
