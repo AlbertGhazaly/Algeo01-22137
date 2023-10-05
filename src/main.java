@@ -134,6 +134,7 @@ public class main {
                     System.setOut(output);
                     System.out.println("Interpolasi ");
                     System.out.println("Solusi hasil perhitungan interpolasi: ");
+                    System.out.print("f(x): ");
                     for (int i=0; i<result.length;i++){
                         if (result[i][0]!=0){
                             if (i==0){
@@ -148,6 +149,16 @@ public class main {
                         }
                     }
                     System.out.println();
+                    System.out.println("Masukkan x1 x2 ...xn");
+                    double[] xar = new double[result.length];
+                    double suminter = 0;
+                    for (int i=0;i<xar.length;i++){
+                        xar[i] = in.nextInt();
+                    }
+                    for (int i = 0;i<xar.length;i++){
+                        suminter += xar[i]*result[i];
+                    }
+                    System.out.print("Hasil: "+suminter);
                     System.setOut(console);
                     System.out.println("Ketik 1 dan [enter] untuk kembali ke Menu Utama.");
                     int back = in.nextInt();
