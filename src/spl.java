@@ -23,26 +23,34 @@ public class spl {
                     System.out.println("X"+(i+1)+": "+solusi[i][0]+" ");
                 }
             }else if (opt==3){
-                if (determinant.detCombination(m)==0){
-                    System.out.println("Determinan = 0, invers tidak ada. Maka tidak valid");
+                if (m.length != (m[0].length-1)){
+                    System.out.println("Matriks bukan matriks persegi dan determinan tidak ada, Input tidak valid !");
                 }else{
-                    System.out.println("Solusi dihitung dengan metode Matriks Balikan");
-                    solusi = spl.inverse_Spl(m);
-                    System.out.println("Hasil Perhitungan: ");
-                    for (int i=0;i<solusi.length;i++){
-                        System.out.println("X"+(i+1)+": "+solusi[i][0]+" ");
+                    if (determinant.detCombination(m)==0){
+                        System.out.println("Determinan Matriks=0 maka Inverse tidak ada. Input tidak valid");
+                    }else{
+                        System.out.println("Solusi dihitung dengan metode Matriks Balikan");
+                        solusi = spl.inverse_Spl(m);
+                        System.out.println("Hasil Perhitungan: ");
+                        for (int i=0;i<solusi.length;i++){
+                            System.out.println("X"+(i+1)+": "+solusi[i][0]+" ");
+                        }
                     }
                 }
             }else{
-                if ((m.length==(m[0].length-1))&& (determinant.detCombination(m)==0)){
-                    System.out.println("Solusi dihitung dengan metode Kaidah Crammer");
-                    solusi = spl.crammer_Spl(m);
-                    System.out.println("Hasil Perhitungan: ");
-                    for (int i=0;i<solusi.length;i++){
-                        System.out.println("X"+(i+1)+": "+solusi[i][0]+" ");
-                    }
+                if ((m.length!=(m[0].length-1))){
+                    System.out.println("Matriks bukan matriks persegi dan determinan tidak ada, Input tidak valid !");
                 }else{
-                    System.out.println("Determinan = 0, invers tidak ada. Maka tidak Valid");
+                    if (determinant.detCombination(m)==0){
+                        System.out.println("Determinan Matriks=0 maka Inverse tidak ada. Input tidak valid");
+                    }else{
+                        System.out.println("Solusi dihitung dengan metode Kaidah Crammer");
+                        solusi = spl.crammer_Spl(m);
+                        System.out.println("Hasil Perhitungan: ");
+                        for (int i=0;i<solusi.length;i++){
+                            System.out.println("X"+(i+1)+": "+solusi[i][0]+" ");
+                        }
+                    }
                 }
                 
             }
