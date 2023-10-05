@@ -156,7 +156,7 @@ public class main {
                         xar[i] = in.nextInt();
                     }
                     for (int i = 0;i<xar.length;i++){
-                        suminter += xar[i]*result[i];
+                        suminter += xar[i]*result[i][0];
                     }
                     System.out.print("Hasil: "+suminter);
                     System.setOut(console);
