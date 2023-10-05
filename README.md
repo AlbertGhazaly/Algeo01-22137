@@ -26,7 +26,7 @@ Akan diperoleh persamaan linear dari titik-titik yang diketahui.
 * **Perbesaran Resolusi Gambar** <br>
 Memperbesar resolusi gambar dengan memanfaatkan Interpolasi Bicubic Spline.
 
-## Structure
+## Struktur Program
 ```bash
 .
 ├───README.md
