@@ -46,15 +46,8 @@ public class main {
                     int back = in.nextInt();
 
                 } else if (opt == 2){
-                    System.out.println("Silakan masukkan baris matrix persegi: ");
-                    int row = in.nextInt();
-                    double[][] matrix = new double[row][row];
-                    System.out.println("Silakan masukkan elemen matrix persegi " + row + "x" + row +": ");
-                    for (int i = 0; i < row; i++){
-                        for (int j = 0; j < row; j++){
-                            matrix[i][j] = in.nextDouble();
-                        }
-                    }
+                    System.out.println("Masukkan matriks PERSEGI (baris dan kolom sama)");
+                    double[][] matrix = operator.inputMatrix();
                     System.out.println("Silakan pilih metode yang ingin digunakan: ");
                     System.out.println("1. Reduksi Baris");
                     System.out.println("2. Ekspansi Kofaktor");
@@ -65,19 +58,22 @@ public class main {
                         System.out.print("Opsi tidak sesuai, silahkan input kembali: ");
                         opt2 = in.nextInt();
                     }
+                    double det;
+                    System.setOut(output);
                     if (opt2 == 1){
                         System.out.println("Determinan dihitung dengan metode Reduksi Baris: ");
-                        double det = determinant.detRowReduction(matrix);
-                        System.out.println("Determinan: " + det);
+                        det = determinant.detRowReduction(matrix);
+                        System.out.println("Determinan: " + det);                        
                     } else if (opt2 == 2){
                         System.out.println("Determinan dihitung dengan metode Ekspansi Kofaktor: ");
-                        double det = determinant.detCofactorExp(matrix);
+                        det = determinant.detCofactorExp(matrix);
                         System.out.println("Determinan: " + det);
                     } else {
                         System.out.println("Determinan dihitung dengan metode Kombinasi Reduksi Baris dan Ekspansi Kofaktor: ");
-                        double det = determinant.detCombination(matrix);
+                        det = determinant.detCombination(matrix);
                         System.out.println("Determinan: " + det);
                     }
+                    System.setOut(console);
 
                     System.out.println("Ketik 1 dan [enter] untuk kembali ke Menu Utama.");
                     int back = in.nextInt();
