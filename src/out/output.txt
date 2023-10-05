@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 Sistem Persamaan Linear
 ada
 persamaan yang dimasukkan tidak cukup
@@ -16,3 +17,5 @@ Solusi menjadi:
 X1: 1.0 -1.0X2 -1.0X3 
 Oleh karena itu, matrix memiliki solusi parametrik atau solusi tak berhingga 
 
+=======
+>>>>>>> linking

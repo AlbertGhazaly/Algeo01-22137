@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 public class invers {
 
     public static double[][] identity(double[][] matrix){
@@ -81,7 +83,7 @@ public class invers {
 
         int row = matrix.length, col = matrix[0].length;
 
-        double detM = determinant.detCofactorExp(matrix);
+        double detM = determinant.detRowReduction(matrix);
 
 
         /* Membuat empty matrix inverse */
@@ -112,7 +114,7 @@ public class invers {
                         }
                     }
                 } 
-                invMatrix[i][j] = Math.pow(-1, i+j)*determinant.detCombination(temp);
+                invMatrix[i][j] = Math.pow(-1, i+j)*determinant.detRowReduction(temp);
             }
         }
         /* matrix invers = 1/determinan x matrix cofactor */
@@ -120,4 +122,68 @@ public class invers {
 
         return invMatrix;
     }    
+
+    public static int runIdentity(){
+
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("\n[Menu Matriks Balikan: Identias]");
+        
+        double[][] inputMatriks = operator.inputMatrix();
+
+        if (inputMatriks.length != inputMatriks[0].length){
+            System.out.println("\nMatriks tidak memiliki balikan.");
+
+        } else {
+
+            double det = determinant.detRowReduction(inputMatriks);
+
+            if (det == 0){
+                System.out.println("\nMatriks tidak memiliki balikan.");
+                
+            } else {
+
+                double[][] outputMatriks = identity(inputMatriks);
+                System.out.println("\nOutput matriks balikan: ");
+
+                operator.displayMatrix(outputMatriks);
+            } 
+        }
+
+        System.out.println("\nSilakan tekan ENTER untuk kembali.");
+        String BACK = scanner.nextLine();
+
+        return 0;
+    }
+
+    public static int runAdjoint(){
+
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("\n[Menu Matriks Balikan: Adjoin]");
+        
+        double[][] inputMatriks = operator.inputMatrix();
+
+        if (inputMatriks.length != inputMatriks[0].length){
+            System.out.println("\nMatriks tidak memiliki balikan.");
+
+        } else {
+
+            double det = determinant.detRowReduction(inputMatriks);
+
+            if (det == 0){
+                System.out.println("\nMatriks tidak memiliki balikan.");
+
+            } else {
+
+                double[][] outputMatriks = adjoint(inputMatriks);
+                System.out.println("\nOutput matriks balikan: ");
+
+                operator.displayMatrix(outputMatriks);
+            } 
+        }
+
+        System.out.println("\nSilakan tekan ENTER untuk kembali.");
+        String BACK = scanner.nextLine();
+
+        return 0;
+    }
 }
