@@ -1,0 +1,7 @@
+Hasil regresi: 
+y = -3.5077781408829116 + -0.0026249907458784265x_1 + 7.989410472214795E-4x_2 + 0.1541550301982821x_3
+Masukkan nilai x untuk ditafsir dengan format: 
+x1 x2 ... xn
+Nilai x1, x2, ..., xn yang diinput: 
+50.0 76.0 29.3 
+y = 0.9384342262216654

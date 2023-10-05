@@ -164,6 +164,11 @@ public class main {
                     for (int i = 0; i < input.length; i++){
                         input[i] = in.nextDouble();
                     }
+                    System.out.println("Nilai x1, x2, ..., xn yang diinput: ");
+                    for (int i = 0; i < input.length; i++){
+                        System.out.print(input[i] + " ");
+                    }                    
+                    System.out.println();
                     double taksiran = 0;
                     for (int i = 0; i < result.length; i++){
                         if (i == 0){
@@ -173,7 +178,7 @@ public class main {
                         }
                     }
                     System.out.println("y = " + taksiran);
-                    System.setOut(output);
+                    System.setOut(console);
 
                     System.out.println("Ketik 1 dan [enter] untuk kembali ke Menu Utama.");
                     int back = in.nextInt();
