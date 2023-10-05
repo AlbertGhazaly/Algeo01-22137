@@ -1,0 +1,24 @@
+
+[Menu Matriks Balikan] 
+
+1. Menggunakan matriks identitas (OBE)
+2. Menggunakan matriks adjoin
+
+Pilih metode (1/2): 
+[Menu Matriks Balikan: Identias]
+
+-Dimensi Matriks-
+Masukkan jumlah baris: Masukkan jumlah kolom: 
+-Metode Input Matriks-
+1. File .txt 
+2. Command line 
+
+Pilih metode (1/2): 
+Input matriks: 
+
+Output matriks balikan: 
+-5.5  3.5  -1.0  
+8.5  -5.5  2.0  
+-3.5  2.5  -1.0  
+
+Silakan tekan ENTER untuk kembali.

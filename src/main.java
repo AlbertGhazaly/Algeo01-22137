@@ -100,7 +100,7 @@ public class main {
                     int back = in.nextInt();
                         
                 } else if (opt == 3){
-
+                    System.setOut(output);
                     System.out.println("\n[Menu Matriks Balikan] ");
 
                     System.out.println("\n1. Menggunakan matriks identitas (OBE)");
@@ -116,6 +116,7 @@ public class main {
                     } else {
                         System.out.println("Input tidak Valid."); 
                     }
+                    System.setOut(console);
 
                 } else if (opt == 4){
 
@@ -168,8 +169,9 @@ public class main {
 
                 } else if (opt == 5){
                     
+                    System.setOut(output);
                     int x = bicubic.runBicubic();
-
+                    System.setOut(console);
 
                 } else if (opt == 6){
                     System.out.println("Masukkan banyaknya peubah x: ");

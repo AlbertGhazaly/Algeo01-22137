@@ -1,2 +1,0 @@
-Determinan dihitung dengan metode Kombinasi Reduksi Baris dan Ekspansi Kofaktor: 
-Determinan: -2035.0000000000002
