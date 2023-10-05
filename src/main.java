@@ -143,7 +143,7 @@ public class main {
                     int m = in.nextInt();
                     System.out.println("Masukkan nilai x dan y dengan format berikut: ");
                     System.out.println("x1 x2 ... xn y");
-                    System.out.println("(petunjuk: baris = banyaknya peubah x + 1, kolom = banyaknya sampel)");
+                    System.out.println("(petunjuk: baris = banyaknya sampel, kolom = banyaknya peubah x + 1)");
                     double[][] data = operator.inputMatrix();
                     double[][] result = multiplelinreg.multipleLinReg(data);
                     System.setOut(output);
