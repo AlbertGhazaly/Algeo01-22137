@@ -1,12 +1,26 @@
 import java.util.Scanner;
 
+/* 
+    <invers>
+
+    Class ini berisi fungsi yang berkaitan dengan fungsi
+    untuk memperoleh matriks balikan.
+*/
+
 public class invers {
+
+    /* 
+        <identity>
+
+        Fungsi untuk memperoleh matriks balikan dengan metode
+        operasi baris elementer matriks identitas
+    */
 
     public static double[][] identity(double[][] matrix){
 
         int row = matrix.length, col = matrix[0].length;
 
-        /* Membuat empty matrix augmented*/
+        /* Membuat empty matrix augmented */
         double[][] aug = new double[row][2*col];
 
         /* Mengisi matrix augmented (matrix|identitas) */
@@ -23,8 +37,10 @@ public class invers {
 
         for (int i = 0; i < row; i++){
 
-            /* masterRow : baris pada aug yang dijadikan acuan untuk OBE
-               masterEle : element pertama setelah nol pada masterRow     */
+            /* 
+                masterRow : baris pada aug yang dijadikan acuan untuk OBE
+                masterEle : element pertama setelah nol pada masterRow    
+            */
             int masterRow = i;
             double masterEle = aug[i][i];
 
@@ -78,6 +94,12 @@ public class invers {
         return invMatrix;
     }    
 
+    /* 
+        <adjoint>
+
+        Fungsi untuk memperoleh matriks balikan dengan metode
+        matriks adjoint
+    */
 
     public static double[][] adjoint(double[][] matrix){
 
@@ -117,11 +139,18 @@ public class invers {
                 invMatrix[i][j] = Math.pow(-1, i+j)*determinant.detRowReduction(temp);
             }
         }
+
         /* matrix invers = 1/determinan x matrix cofactor */
         invMatrix = operator.scalarMult(1/detM, operator.transpose(invMatrix));
 
         return invMatrix;
-    }    
+    }   
+
+    /* 
+        <identity>
+
+        Fungsi driver untuk fungsi matriks balikan metode identitas
+    */
 
     public static int runIdentity(){
 
@@ -154,6 +183,12 @@ public class invers {
 
         return 0;
     }
+
+    /* 
+        <identity>
+
+        Fungsi driver untuk fungsi matriks balikan metode adjoin
+    */
 
     public static int runAdjoint(){
 
