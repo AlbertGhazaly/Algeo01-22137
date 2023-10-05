@@ -265,9 +265,8 @@ public class imageProcessing {
 
         Scanner scanner = new Scanner(System.in);
 
-        System.out.print("\nMasukkan nama file input: ");
+        System.out.print("\nMasukkan directory file input: ");
         String inputPath = scanner.nextLine();
-        inputPath = "image\\" + inputPath;
 
         Path image = Paths.get(inputPath);
 
@@ -278,10 +277,9 @@ public class imageProcessing {
 
             String imagePath = inputPath; 
 
-            System.out.print("Masukkan nama file output: ");
+            System.out.print("Masukkan directory file output: ");
 
-            String outputPath = scanner.nextLine();
-            outputPath = "image/" + outputPath;   
+            String outputPath = scanner.nextLine(); 
 
             int[][] pixelArray = imageToArray(imagePath);
 
