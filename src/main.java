@@ -151,7 +151,7 @@ public class main {
                     System.out.println();
                     System.out.println("Masukkan nilai x");
                     n -=1;
-                    int der = in.nextIn;
+                    int der = in.nextInt();
                     double suminter = 0;
                     for (int i = 1;i<result.length;i++){
                         int has = 1;
