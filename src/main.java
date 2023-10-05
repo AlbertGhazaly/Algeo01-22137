@@ -37,34 +37,11 @@ public class main {
                         System.out.print("Opsi tidak sesuai, silahkan input kembali: ");
                         opt1 = in.nextInt();
                     }
-                    double[][] solusi;
                     double[][] matrix = operator.inputMatrix();
 
                     System.setOut(output); // set stream ke output
                     System.out.println("Sistem Persamaan Linear");
-                    if (operator.isNoSolution(matrix)){
-                        System.out.println("matrix tidak memiliki solusi");
-                    }else if (operator.isSolutionParametric(matrix)){
-                        System.out.println("Oleh karena itu, matrix memiliki solusi parametrik atau solusi tak berhingga ");
-                    }else{
-                        if (opt1==1){
-                            System.out.println("Solusi dihitung dengan metode Elminasi Gauss");
-                            solusi = spl.gauss_Spl(matrix);
-                        }else if (opt1 ==2){
-                            System.out.println("Solusi dihitung dengan metode Elminasi Gauss-Jordan");
-                            solusi = spl.gauss_Jordan_Spl(matrix);
-                        }else if (opt1==3){
-                            System.out.println("Solusi dihitung dengan metode Matriks Balikan");
-                            solusi = spl.inverse_Spl(matrix);
-                        }else{
-                            System.out.println("Solusi dihitung dengan metode Kaidah Crammer");
-                            solusi = spl.crammer_Spl(matrix);
-                        }
-                        System.out.println("Hasil Perhitungan: ");
-                        for (int i=0;i<solusi.length;i++){
-                            System.out.println("X"+(i+1)+": "+solusi[i][0]+" ");
-                        }
-                    }
+                    spl.SPL(matrix, opt1);
                     System.out.println();
                     System.setOut(console); // kembali set stream ke normal (console)
                     System.out.println("Ketik 1 dan [enter] untuk kembali ke Menu Utama.");
