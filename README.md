@@ -32,51 +32,31 @@ Memperbesar resolusi gambar dengan memanfaatkan Interpolasi Bicubic Spline.
 ├───README.md
 │
 ├───bin
-│   ├───MultiOutputStream.class
-│   │    
-│   ├───bicubic.class
-│   │       
+│   ├───MultiOutputStream.class  
+│   ├───bicubic.class     
 │   ├───determinant.class
-│   │
 │   ├───imageProcessing.class
-│   │
 │   ├───interpolasi.class
-│   │
 │   ├───invers.class
-│   │
 │   ├───main.class
-│   │
 │   ├───main.class
-│   │
 │   ├───operator.class
-│   │
 │   ├───operatormultiplelinreg.class
-│   │
 │   └───spl.class
 │
 ├───doc
 │
 ├───src
-│   ├───MultiOutputStream.java
-│   │    
-│   ├───bicubic.java
-│   │       
+│   ├───MultiOutputStream.java   
+│   ├───bicubic.java      
 │   ├───determinant.java
-│   │
 │   ├───imageProcessing.java
-│   │
 │   ├───interpolasi.java
-│   │
 │   ├───invers.java
-│   │
 │   ├───main.java
-│   │
 │   ├───main.java
-│   │
 │   ├───operator.java
-│   │
 │   ├───operatormultiplelinreg.java
-│   │
 │   └───spl.java
 │
 └───test
