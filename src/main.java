@@ -149,14 +149,16 @@ public class main {
                         }
                     }
                     System.out.println();
-                    System.out.println("Masukkan x1 x2 ...xn");
-                    double[] xar = new double[result.length];
+                    System.out.println("Masukkan nilai x");
+                    n -=1;
+                    int der = in.nextIn;
                     double suminter = 0;
-                    for (int i=0;i<xar.length;i++){
-                        xar[i] = in.nextInt();
-                    }
-                    for (int i = 0;i<xar.length;i++){
-                        suminter += xar[i]*result[i][0];
+                    for (int i = 1;i<result.length;i++){
+                        int has = 1;
+                        for (int pan = 0;pan<i;pan++){
+                            has = has*der;
+                        }
+                        suminter += has;
                     }
                     System.out.print("Hasil: "+suminter);
                     System.setOut(console);
