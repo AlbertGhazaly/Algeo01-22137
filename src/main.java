@@ -141,15 +141,12 @@ public class main {
                     int n = in.nextInt();
                     System.out.println("Masukkan banyaknya sampel: ");
                     int m = in.nextInt();
-                    System.out.println("Masukkan nilai x dan y dengan format: ");
+                    System.out.println("Masukkan nilai x dan y dengan format berikut: ");
                     System.out.println("x1 x2 ... xn y");
-                    double[][] data = new double[m][n+1];
-                    for (int i = 0; i < m; i++){
-                        for (int j = 0; j < n + 1; j++){
-                            data[i][j] = in.nextDouble();
-                        }
-                    }
+                    System.out.println("(petunjuk: baris = banyaknya peubah x + 1, kolom = banyaknya sampel)");
+                    double[][] data = operator.inputMatrix();
                     double[][] result = multiplelinreg.multipleLinReg(data);
+                    System.setOut(output);
                     System.out.println("Hasil regresi: ");
                     System.out.print("y = ");
                     for (int i = 0; i < result.length; i++){
@@ -176,6 +173,7 @@ public class main {
                         }
                     }
                     System.out.println("y = " + taksiran);
+                    System.setOut(output);
 
                     System.out.println("Ketik 1 dan [enter] untuk kembali ke Menu Utama.");
                     int back = in.nextInt();
